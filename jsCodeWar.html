@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+<script>
+"use strict"
+//How to receive a string and make it return in WiErD FoRmAt. (Every even number from index 0 including 0 is uppercase.)
+function toWeirdCase(string){
+  return string.split(' ').map(function(word){
+    return word.split('').map(function(letter, index){
+      return index % 2 == 0 ? letter.toUpperCase() : letter.toLowerCase()
+    }).join('');
+  }).join(' ');
+}
+
+console.log(toWeirdCase("This is a test.")); //should return 'ThIs Is A TeSt'.
+
+//How to receive sum of all numbers which are divisible by 3 & 5 underneath the number passed through without counting duplicates like 15. 
+function solution(number){
+  let result = 0;
+  for(let i = 1; i < number; i++){
+	if(i%3 == 0) {
+	 result += i; 
+	} else if(i%5 == 0) {
+	  result += i;
+	}
+  }
+	 return result;
+}
+
+console.log(solution(23));  //Should return 119
+
+
+
+//How to create phone numbers from a array of numbers passed through.
+function createPhoneNumber(numbers){
+  numbers = numbers.join("");
+  return "(" + numbers.slice(0, 3) + ") " + numbers.slice(3, 6) + "-" + numbers.slice(6);  //You don't have to put a end number if you want all the numbers between (6) and end of string.
+} 
+
+let test = createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+
+console.log(test);  //should return (123) 456-7890
+
+//Alternative method very useful for more complicated formats, also has benefit of not requiring you to change array to string in order to produce result.
+//function createPhoneNumber(numbers){
+//  var format = "(xxx) xxx-xxxx";
+//
+//  for(var i = 0; i < numbers.length; i++)
+//  {
+//    format = format.replace('x', numbers[i]);
+//  }
+//
+//  return format;
+//}
+
+
+
+//How to accept input as string turn into array and remove duplicates that are next to each other while retaining original order.
+var uniqueInOrder=function(iterable){
+  let arr = [];
+  for(let i = 0; i < iterable.length; i++) {
+	arr.push(iterable[i]);
+    let iMinus = i - 1;
+      if(iterable[i] == iterable[iMinus]) {
+        arr.pop(i);
+    }
+  }
+  return arr;
+}
+
+console.log(uniqueInOrder('AAAABBBCCDAABBB'));  //should return ['A', 'B', 'C', 'D', 'A', 'B']
+
+
+
+//How to return the other end of DNA strand based on the rule that A and T are opposite/complementary pairs, and so are G and C.
+function DNAStrand(dna){
+  let arr = [];
+  for(let i = 0; i < dna.length; i++) {
+    if(dna[i] == "A") {
+      arr.push("T");
+	}
+	else if(dna[i] == "T") {
+	  arr.push("A");
+	}
+	else if(dna[i] == "G") {
+	  arr.push("C");
+	}
+	else if(dna[i] == "C") {
+	  arr.push("G");
+	}
+  }
+  return arr.join("");
+}
+
+console.log(DNAStrand("ATTGC"));  //Should return "TAACG"
+
+
+
+
+//How to return true if 3 values can create a triangles 3 sides. 
+function isTriangle(a,b,c) {
+   if(a + b > c && a + c > b && b + c > a) {
+     return true;
+   } else {
+     return false;
+   }
+}
+
+console.log(isTriangle(1, 2, 2));
+console.log(isTriangle(7, 2, 2));
+//The way it works: 3 conditions must always be true in order for 3 lengths to be able to create a triangle. a+b > c, a+c > b and b+c > a  This is because if two sides combined are less than the length of the 3rd length, they won't reach each other to make a angle if they are attached to the points of the third length.
+//  Pythagorean theorum is a**2 + b**2 == c**2 but that doesn't apply here because we are not trying to make right traingles. We are trying to determine the ability to make ANY triangle.
+
+
+
+//Wierd one:
+function accum(str) {
+  let arr = []
+  for(let i = 0; i < str.length; i++) {
+    let index = str.charAt(i)
+	let upper = index.toUpperCase()
+	let lower = index.toLowerCase()
+	let part2 = lower.repeat(i)
+	if(i < str.length - 1) {
+      arr += upper + part2 + '-'
+	} else {
+	  arr += upper + part2
+	}
+  }
+  return arr
+}
+
+console.log(accum("ZpglnRxqenU"));  //Should output Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu
+
+//A more efficient way to do the same thing: Ask jeremy how this works. I don't understand how return works here, and also how come the console skips the .map line when I try to see what it does?
+function accum(s) {
+  return s.split('')
+  .map((item, index) => item.toUpperCase() + item.toLowerCase().repeat(index))
+  .join('-');
+}
+//The reason this works is because it's all treated as one line after 'return'. The 'map' line gets skipped because the browser runs the loop in it's own native code, not in javascript. That is how map command works. When you run a for loop in javascript it goes significantly slower. So if you can use .map instead, that is preferable, though it can be slightly more confusing code.
+
+//This is meant to take any number of words as a string, and any words that are 5 characters or greater will get reversed, but all the other words stay the same.
+function spinWords(str){
+  return str.split(" ").map((item) => { 
+    if(item.length >= 5) { 
+      return item.split("").reverse().join("") } return item }).join(" ");
+}
+console.log(spinWords('Welcome home')) //Should return 'emocleW home'.
+
+//This is meant to check for the smallest perfect square number that when added to n equals a perfect square number.
+//function solve(n){
+//  let i = Math.pow(10, Math.round(n.length/2));
+//  let perfectSquare;
+//  let nextPerfectSquare;
+//  while(Math.sqrt(nextPerfectSquare + n) % 1 != 0) { 
+//    if(i > Math.pow(100, Math.round(n.length/2))) {  
+//      return -1;
+//    } else {
+//	  perfectSquare = i*i;
+//	  nextPerfectSquare = (i+1)*(i+1); 
+//      i++;
+//    }
+//  }
+//    return nextPerfectSquare;
+//}
+//line 145: formula for finding the next perfect square number
+//line 146: While x + n is not equal to a perfect square continue loop.
+//line 147: If loop runs 100 times and still the condition above hasn't been met, just return -1 as the answer.
+//Every 2 additional digits within the number given is another digit added for a square root. example Sqrt(1)=1 Sqrt(100)=10 Sqrt(10000)=100 Sqrt(1000000) = 1000
+//This means if n has length of 4 digits, then you want i to be equal to 2 digits, if n has length of 5 digits, you want i to be equal to 3 digits. 
+//if n has length of 1 digit, you want i equal to 1 digit. If n has length of 2 digits, you want i equal to 1 digit. If n has length of 3 digits, you want 
+//i equal to 2 digits. so in summary:
+//n=1 i=1, n=2 i=1, n=3 i=2, n=4 i=2, n=5 i=3,... A formula for this would be i = Math.round(n.length()/2) * 10
+//console.log(solve(1));
+//console.log(solve(2));
+//console.log(solve(17));
+//console.log(solve(88901));
+//console.log(solve(10));
+
+
+</script>
+  </body>
+</html>
