@@ -38,7 +38,7 @@ public class App {
         System.out.println(LongestPalindrome.longestPalindrome("aa"));
         System.out.println(LongestPalindrome.longestPalindrome("baa"));
         System.out.println(LongestPalindrome.longestPalindrome("aab"));
-        System.out.println(LongestPalindrome.longestPalindrome("zyabyz"));
+        System.out.println(LongestPalindrome.longestPalindrome("zyabracecaryz"));
         System.out.println(LongestPalindrome.longestPalindrome("baabcd"));
         System.out.println(LongestPalindrome.longestPalindrome("baablkj12345432133d"));
      

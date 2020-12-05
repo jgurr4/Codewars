@@ -13,8 +13,6 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
 
-	//apply eclipse plugin to allow this to be imported.
-	id 'eclipse'
 }
 
 repositories {
