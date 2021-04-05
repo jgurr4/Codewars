@@ -3,6 +3,8 @@
  */
 package codeWarsJava;
 
+import java.lang.reflect.Array;
+
 public class App {
 
     //To test anything, just uncomment it. for 'average' just uncomment the code block below on this page.
@@ -34,14 +36,11 @@ public class App {
 //        System.out.println(CamelCaseWithSpace.camelCase("camelcasing"));
 //        System.out.println(CamelCaseWithSpace.camelCase("camelCasing"));
 //        System.out.println(CountDigits.countDigits(43214));
-        System.out.println(LongestPalindrome.longestPalindrome("a"));
-        System.out.println(LongestPalindrome.longestPalindrome("aa"));
-        System.out.println(LongestPalindrome.longestPalindrome("baa"));
-        System.out.println(LongestPalindrome.longestPalindrome("aab"));
-        System.out.println(LongestPalindrome.longestPalindrome("zyabracecaryz"));
-        System.out.println(LongestPalindrome.longestPalindrome("baabcd"));
-        System.out.println(LongestPalindrome.longestPalindrome("baablkj12345432133d"));
-     
+//        System.out.println(LongestPalindrome.longestPalindrome("a"));
+//        System.out.println(LongestPalindrome.longestPalindrome("aa"));
+//        String[] strarr = {"tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"};
+//        System.out.println(ConsecutiveStrings.longestConsec(strarr, 2));
+        System.out.println(ConsecutiveStrings.longestConsec(new String[] {"zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"}, 2));
         /*Note: This is saved as an example to show how to use non-static methods and share variables.
         SqInRect sir = new SqInRect(); 
         sir.sqInRect(5, 3);   //look above for answer.
