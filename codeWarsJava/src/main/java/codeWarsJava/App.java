@@ -40,7 +40,11 @@ public class App {
 //        System.out.println(LongestPalindrome.longestPalindrome("aa"));
 //        String[] strarr = {"tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"};
 //        System.out.println(ConsecutiveStrings.longestConsec(strarr, 2));
-        System.out.println(ConsecutiveStrings.longestConsec(new String[] {"zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"}, 2));
+//        System.out.println(ConsecutiveStrings.longestConsec(new String[] {"zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"}, 2));
+        System.out.println(SumOfParts.sumParts(new int[] {})); //{0}
+        System.out.println(SumOfParts.sumParts(new int[] {0, 1, 3, 6, 10}));  //new int[] {20, 20, 19, 16, 10, 0}
+        System.out.println(SumOfParts.sumParts(new int[] {1, 2, 3, 4, 5, 6})); //new int[] {21, 20, 18, 15, 11, 6, 0}
+        System.out.println(SumOfParts.sumParts(new int[] {744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358})); //{10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 9291414, 9291270, 2581057, 2580168, 2579358, 0}
         /*Note: This is saved as an example to show how to use non-static methods and share variables.
         SqInRect sir = new SqInRect(); 
         sir.sqInRect(5, 3);   //look above for answer.
