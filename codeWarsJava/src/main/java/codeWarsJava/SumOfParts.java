@@ -5,6 +5,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/*
+// This is my favorite solution that someone else made because it solves the problem I was trying to figure out.
+  public static int[] sumParts(int[] ls) {
+    int[] result = new int[ls.length + 1];
+    int sum = Arrays.stream(ls).sum();
+
+    for (int i = 0; i<ls.length;i++){
+        result[i] = sum;
+        sum = sum - ls[i];
+    }
+
+    return result;
+  }
+ */
+
 public class SumOfParts {
   public static int[] sumParts(int[] ls) {
     int[] result = new int[ls.length+1];
@@ -18,6 +33,8 @@ public class SumOfParts {
 
 
 /*
+//See this page for some very good to know solutions: https://www.codewars.com/kata/5ce399e0047a45001c853c2b/solutions
+
 //This was my initial solution using two for loops. it passed all normal tests, but it failed in the performance test which had 150000 to 200000 length array inputs.
 //The problem with this solution is that is uses nested for loops which while they do work, they are not optimal.
     public static int[] sumParts(int[] ls) {
