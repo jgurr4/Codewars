@@ -49,6 +49,18 @@ public class App {
 //        long[][] lst2 = new long[][] { {69, 130}, {87, 1310}, {30, 40} };
 //        System.out.println(Fracts.convertFrac(lst2)); //(18078,34060)(2262,34060)(25545,34060)
 //        System.out.println(Fracts.convertFrac(lst)); //(6,12)(4,12)(3,12)
+//        System.out.println("\nRESULT: " + StripComments.stripComments( "apples, pears # and bananas\ngrapes\nbananas !apples", new String[] { "#", "!" } ));
+//        System.out.println("SHOULD BE: apples, pears\ngrapes\nbananas");
+//        System.out.println("\nRESULT: " + StripComments.stripComments("a\n b\nc ", new String[] { "#", "!"}) + ">");
+//        System.out.println("SHOULD BE: a\n b\nc >");
+//        System.out.println("\nRESULT: " + StripComments.stripComments("so\n$my\n ouch\n he!llo\n #bee$\n &some\n otherones\n\n!", new String[] {"$", "!", "#", "&"}));
+//        System.out.println("SHOULD BE: <so\n\n ouch\n he\n\n otherones\n\n>");
+//        System.out.println("\nRESULT: " + StripComments.stripComments("        ", new String[] {"#"}));
+//        System.out.println("SHOULD BE: <>");
+//        System.out.println("\nRESULT: " + StripComments.stripComments( "a #b\nc\nd $e f g", new String[] { "#", "$" } ));
+//        System.out.println("SHOULD BE: a\nc\nd");
+//        System.out.println("\nRESULT: " + StripComments.stripComments( "a #b\n\n\n\nc\nd $e\n\n f g\n\ncec[$\n#\n]", new String[] { "#", "$" } ));
+//        System.out.println("SHOULD BE: a\n\n\n\nc\nd\n\n f g\n\ncec[\n\n]");
         /*Note: This is saved as an example to show how to use non-static methods and share variables.
         SqInRect sir = new SqInRect(); 
         sir.sqInRect(5, 3);   //look above for answer.
