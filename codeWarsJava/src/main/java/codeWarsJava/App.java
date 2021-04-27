@@ -61,6 +61,14 @@ public class App {
 //        System.out.println("SHOULD BE: a\nc\nd");
 //        System.out.println("\nRESULT: " + StripComments.stripComments( "a #b\n\n\n\nc\nd $e\n\n f g\n\ncec[$\n#\n]", new String[] { "#", "$" } ));
 //        System.out.println("SHOULD BE: a\n\n\n\nc\nd\n\n f g\n\ncec[\n\n]");
+        System.out.println((RangeExtraction.rangeExtraction(new int[] {-6,-3,-2,-1,0,1,3,4,5,7,8,9,10,11,14,15,17,18,19,20})));
+        System.out.println("SHOULD BE: -6,-3-1,3-5,7-11,14,15,17-20");
+        System.out.println(RangeExtraction.rangeExtraction(new int[] {5,-3,2,-1,55,0,-23}));  //tests disordered input
+        System.out.println("SHOULD BE: -23,-3,-1,0,2,5,55");
+        System.out.println((RangeExtraction.rangeExtraction(new int[] {-3,-2,-1,2,10,15,16,18,19,20})));  //tests ability to handle range of negatives.
+        System.out.println("SHOULD BE: -3--1,2,10,15,16,18-20");
+        System.out.println(RangeExtraction.rangeExtraction(new int[] {3,3,4,5}));  //tests duplicate values input as well as input that should equal output exactly.
+        System.out.println("SHOULD BE: 3,3-5");  //I believe it should return duplicates for this kata, I'll find out if that is correct soon enough.
         /*Note: This is saved as an example to show how to use non-static methods and share variables.
         SqInRect sir = new SqInRect(); 
         sir.sqInRect(5, 3);   //look above for answer.
