@@ -6,9 +6,38 @@ package codeWarsJava;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
+    @Test
+    public void testAppHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    }
+
+    @Test
+    public void testSimpleDirReduc() {
+        assertArrayEquals("\"NORTH\", \"SOUTH\", \"SOUTH\", \"EAST\", \"WEST\", \"NORTH\", \"WEST\"",
+                new String[]{"WEST"},
+                DirReduction.dirReduc(new String[]{"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"}));
+        assertArrayEquals("\"NORTH\",\"SOUTH\",\"SOUTH\",\"EAST\",\"WEST\",\"NORTH\"",
+                new String[]{},
+                DirReduction.dirReduc(new String[]{"NORTH","SOUTH","SOUTH","EAST","WEST","NORTH"}));
+    }
+
+    @Test
+    public void testCompoundInterest() {
+        assertEquals(12201.90, CompoundInterest.checker(10000), .009);
+        assertEquals(12201.900399479671, CompoundInterest.checker(10000), 0);
+        //Note: For double or floating point values, delta represents the amount the actual answer can be off from the correct answer. For example, 12201.9003 doesn't exactly match
+        // the correct answer due to being more precise. So delta of .009 allows that to still return as true.
+        //In other words it returns true in this case: Math.abs(expected - actual) < epsilon
+        // You could also leave it at zero so that it has to be exactly correct, but you have to include the full expected answer as seen in example above.
+    }
+
+    @Test
+    public void testMultiples() {
+        assertEquals(23, new Multiples().sumOfMultiples(10));
+        assertEquals(143, new Multiples().sumOfMultiples(25));
+        assertEquals(0, new Multiples().sumOfMultiples(-25));
     }
 }
