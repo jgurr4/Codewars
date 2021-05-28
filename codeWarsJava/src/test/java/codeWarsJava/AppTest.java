@@ -4,6 +4,10 @@
 package codeWarsJava;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.stream.*;
+
 import static org.junit.Assert.*;
 
 
@@ -39,5 +43,68 @@ public class AppTest {
         assertEquals(23, new Multiples().sumOfMultiples(10));
         assertEquals(143, new Multiples().sumOfMultiples(25));
         assertEquals(0, new Multiples().sumOfMultiples(-25));
+    }
+
+    @Test
+    public void testFinder() {
+        String a = ".W.\n" +
+                ".W.\n" +
+                "...",
+
+                b =     ".W.\n" +
+                        ".W.\n" +
+                        "W..",
+
+                c =     "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......",
+
+                d =     "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        ".....W\n" +
+                        "....W.",
+
+                e =     ".W...\n" +
+                        ".W...\n" +
+                        ".W.W.\n" +
+                        "...W.\n" +
+                        "...W.";
+
+        Finder finderA = new Finder();
+        Finder finderB = new Finder();
+        Finder finderC = new Finder();
+        Finder finderD = new Finder();
+        Finder finderE = new Finder();
+        assertTrue(finderA.pathFinder(a));
+        assertFalse(finderB.pathFinder(b));
+        assertTrue(finderC.pathFinder(c));
+        assertFalse(finderD.pathFinder(d));
+        assertTrue(finderE.pathFinder(e));
+
+    }
+
+    @Test
+    public void sampleTests() {
+        assertEquals(Arrays.asList("epaeii", "ygbbyh'ie", "ueh"), TopWords.top3("eLTRGYWgSu_EpAEIi.TRGtXWEkZ;UeH bnV-SKiHIUI TRGtXWEkZ kCTvxGU UeH kcOeKnPJ-UeH jlHzCBWS-EpAEIi;bnV TRGtXWEkZ yOFbCWMnDi yGBbYh'IE/kcOeKnPJ-UeH.eLTRGYWgSu SKiHIUI Fje RHXPBgVusF UeH yGBbYh'IE kcOeKnPJ!eLTRGYWgSu EpAEIi EpAEIi/EpAEIi.kCTvxGU/aERGC-sLY' RHXPBgVusF RHXPBgVusF?RHXPBgVusF yGBbYh'IE?TRGtXWEkZ sLY' yGBbYh'IE UeH bnV EpAEIi jlHzCBWS yOFbCWMnDi_yOFbCWMnDi yGBbYh'IE?sLY' kcOeKnPJ yGBbYh'IE;UeH bnV-EpAEIi?UeH UeH.jlHzCBWS yOFbCWMnDi kcOeKnPJ?bnV EpAEIi?bnV t'gxk:bnV-SKiHIUI.TRGtXWEkZ kCTvxGU sLY' RHXPBgVusF yOFbCWMnDi/bnV jlHzCBWS eLTRGYWgSu UeH_SKiHIUI,EpAEIi t'gxk.kCTvxGU EpAEIi UeH bnV_aERGC yGBbYh'IE;yGBbYh'IE;TRGtXWEkZ?yGBbYh'IE EpAEIi:bnV yGBbYh'IE TRGtXWEkZ EpAEIi.TRGtXWEkZ aERGC TRGtXWEkZ;kCTvxGU-eLTRGYWgSu EpAEIi RHXPBgVusF-jlHzCBWS yOFbCWMnDi yGBbYh'IE.RHXPBgVusF EpAEIi:jlHzCBWS:kCTvxGU?RHXPBgVusF;Fje sLY' SKiHIUI.yOFbCWMnDi?SbyxHWD RHXPBgVusF/eLTRGYWgSu TRGtXWEkZ/aERGC bnV?EpAEIi.jlHzCBWS eLTRGYWgSu jlHzCBWS eLTRGYWgSu sLY':jlHzCBWS eLTRGYWgSu_SKiHIUI SKiHIUI jlHzCBWS-jlHzCBWS sLY' yGBbYh'IE kcOeKnPJ.eLTRGYWgSu!t'gxk,TRGtXWEkZ sLY'!TRGtXWEkZ TRGtXWEkZ;sLY' EpAEIi_kCTvxGU RHXPBgVusF TRGtXWEkZ-aERGC.bnV bnV,UeH,EpAEIi bnV UeH/aERGC sLY'_sLY'_eLTRGYWgSu bnV yGBbYh'IE kCTvxGU:EpAEIi kcOeKnPJ yOFbCWMnDi TRGtXWEkZ aERGC?Fje bnV kcOeKnPJ SbyxHWD_aERGC SKiHIUI UeH yGBbYh'IE bnV:sLY' RHXPBgVusF?EpAEIi EpAEIi EpAEIi:SKiHIUI kcOeKnPJ;yGBbYh'IE;Fje TRGtXWEkZ:t'gxk yGBbYh'IE yGBbYh'IE:yGBbYh'IE bnV Fje;EpAEIi UeH,TRGtXWEkZ TRGtXWEkZ TRGtXWEkZ?sLY'_eLTRGYWgSu eLTRGYWgSu bnV sLY' kCTvxGU/SKiHIUI UeH yGBbYh'IE/eLTRGYWgSu:aERGC yOFbCWMnDi yOFbCWMnDi sLY' EpAEIi-UeH UeH-yGBbYh'IE eLTRGYWgSu TRGtXWEkZ yOFbCWMnDi/EpAEIi/yGBbYh'IE RHXPBgVusF/eLTRGYWgSu UeH sLY';RHXPBgVusF TRGtXWEkZ EpAEIi RHXPBgVusF_kcOeKnPJ SKiHIUI kCTvxGU;eLTRGYWgSu?t'gxk TRGtXWEkZ?yGBbYh'IE UeH kCTvxGU,yGBbYh'IE yGBbYh'IE?kcOeKnPJ_yOFbCWMnDi eLTRGYWgSu aERGC UeH UeH kCTvxGU-bnV-kCTvxGU sLY'-RHXPBgVusF:sLY' UeH-yGBbYh'IE UeH!yGBbYh'IE UeH-EpAEIi!EpAEIi RHXPBgVusF yOFbCWMnDi EpAEIi;RHXPBgVusF:EpAEIi SbyxHWD TRGtXWEkZ_RHXPBgVusF!TRGtXWEkZ eLTRGYWgSu?TRGtXWEkZ sLY',kCTvxGU;yGBbYh'IE kCTvxGU/jlHzCBWS bnV_jlHzCBWS,t'gxk kCTvxGU bnV jlHzCBWS.sLY' jlHzCBWS;YdfIGc bnV,TRGtXWEkZ RHXPBgVusF sLY' EpAEIi t'gxk TRGtXWEkZ/yGBbYh'IE sLY' kCTvxGU UeH kCTvxGU yGBbYh'IE yOFbCWMnDi eLTRGYWgSu t'gxk UeH UeH bnV!t'gxk eLTRGYWgSu kcOeKnPJ SKiHIUI-kCTvxGU UeH aERGC eLTRGYWgSu t'gxk:"));
+        assertEquals(Arrays.asList("e", "ddd", "aa"), TopWords.top3("e e e e DDD DDD DDD: DdD ddd aa aA Aa, bb cc cC e e e"));
+        assertEquals(Arrays.asList("e", "d", "a"),    TopWords.top3("a a a  b  c c  d d d d  e e e e e"));
+        assertEquals(Arrays.asList("won't", "wont"),  TopWords.top3("  //wont won't won't "));
+        assertEquals(Arrays.asList("e"),              TopWords.top3("  , e   .. "));
+        assertEquals(Arrays.asList(),                 TopWords.top3("  ...  "));
+        assertEquals(Arrays.asList(),                 TopWords.top3("  '  "));
+        assertEquals(Arrays.asList(),                 TopWords.top3("  '''  "));
+        assertEquals(Arrays.asList("a", "of", "on"),  TopWords.top3(Stream
+                .of("In a village of La Mancha, the name of which I have no desire to call to",
+                        "mind, there lived not long since one of those gentlemen that keep a lance",
+                        "in the lance-rack, an old buckler, a lean hack, and a greyhound for",
+                        "coursing. An olla of rather more beef than mutton, a salad on most",
+                        "nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra",
+                        "on Sundays, made away with three-quarters of his income.")
+                .collect(Collectors.joining("\n")) ));
     }
 }
