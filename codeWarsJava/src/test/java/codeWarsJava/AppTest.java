@@ -12,99 +12,147 @@ import static org.junit.Assert.*;
 
 
 public class AppTest {
-    @Test
-    public void testAppHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-    }
+  @Test
+  public void testAppHasAGreeting() {
+    App classUnderTest = new App();
+    assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+  }
 
-    @Test
-    public void testSimpleDirReduc() {
-        assertArrayEquals("\"NORTH\", \"SOUTH\", \"SOUTH\", \"EAST\", \"WEST\", \"NORTH\", \"WEST\"",
-                new String[]{"WEST"},
-                DirReduction.dirReduc(new String[]{"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"}));
-        assertArrayEquals("\"NORTH\",\"SOUTH\",\"SOUTH\",\"EAST\",\"WEST\",\"NORTH\"",
-                new String[]{},
-                DirReduction.dirReduc(new String[]{"NORTH","SOUTH","SOUTH","EAST","WEST","NORTH"}));
-    }
+  @Test
+  public void testSimpleDirReduc() {
+    assertArrayEquals("\"NORTH\", \"SOUTH\", \"SOUTH\", \"EAST\", \"WEST\", \"NORTH\", \"WEST\"",
+            new String[]{"WEST"},
+            DirReduction.dirReduc(new String[]{"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"}));
+    assertArrayEquals("\"NORTH\",\"SOUTH\",\"SOUTH\",\"EAST\",\"WEST\",\"NORTH\"",
+            new String[]{},
+            DirReduction.dirReduc(new String[]{"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH"}));
+  }
 
-    @Test
-    public void testCompoundInterest() {
-        assertEquals(12201.90, CompoundInterest.checker(10000), .009);
-        assertEquals(12201.900399479671, CompoundInterest.checker(10000), 0);
-        //Note: For double or floating point values, delta represents the amount the actual answer can be off from the correct answer. For example, 12201.9003 doesn't exactly match
-        // the correct answer due to being more precise. So delta of .009 allows that to still return as true.
-        //In other words it returns true in this case: Math.abs(expected - actual) < epsilon
-        // You could also leave it at zero so that it has to be exactly correct, but you have to include the full expected answer as seen in example above.
-    }
+  @Test
+  public void testCompoundInterest() {
+    assertEquals(12201.90, CompoundInterest.checker(10000), .009);
+    assertEquals(12201.900399479671, CompoundInterest.checker(10000), 0);
+    //Note: For double or floating point values, delta represents the amount the actual answer can be off from the correct answer. For example, 12201.9003 doesn't exactly match
+    // the correct answer due to being more precise. So delta of .009 allows that to still return as true.
+    //In other words it returns true in this case: Math.abs(expected - actual) < epsilon
+    // You could also leave it at zero so that it has to be exactly correct, but you have to include the full expected answer as seen in example above.
+  }
 
-    @Test
-    public void testMultiples() {
-        assertEquals(23, new Multiples().sumOfMultiples(10));
-        assertEquals(143, new Multiples().sumOfMultiples(25));
-        assertEquals(0, new Multiples().sumOfMultiples(-25));
-    }
+  @Test
+  public void testMultiples() {
+    assertEquals(23, new Multiples().sumOfMultiples(10));
+    assertEquals(143, new Multiples().sumOfMultiples(25));
+    assertEquals(0, new Multiples().sumOfMultiples(-25));
+  }
 
-    @Test
-    public void testFinder() {
-        String a = ".W.\n" +
-                ".W.\n" +
-                "...",
+  @Test //FIXME: This test fails.
+  public void testFinder() {
+    String a = ".W.\n" +
+            ".W.\n" +
+            "...",
 
-                b =     ".W.\n" +
-                        ".W.\n" +
-                        "W..",
+            b = ".W.\n" +
+                    ".W.\n" +
+                    "W..",
 
-                c =     "......\n" +
-                        "......\n" +
-                        "......\n" +
-                        "......\n" +
-                        "......\n" +
-                        "......",
+            c = "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    "......",
 
-                d =     "......\n" +
-                        "......\n" +
-                        "......\n" +
-                        "......\n" +
-                        ".....W\n" +
-                        "....W.",
+            d = "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    ".....W\n" +
+                    "....W.",
 
-                e =     ".W...\n" +
-                        ".W...\n" +
-                        ".W.W.\n" +
-                        "...W.\n" +
-                        "...W.";
+            e = ".W...\n" +
+                    ".W...\n" +
+                    ".W.W.\n" +
+                    "...W.\n" +
+                    "...W.";
 
-        Finder finderA = new Finder();
-        Finder finderB = new Finder();
-        Finder finderC = new Finder();
-        Finder finderD = new Finder();
-        Finder finderE = new Finder();
-        assertTrue(finderA.pathFinder(a));
-        assertFalse(finderB.pathFinder(b));
-        assertTrue(finderC.pathFinder(c));
-        assertFalse(finderD.pathFinder(d));
-        assertTrue(finderE.pathFinder(e));
+    Finder finderA = new Finder();
+    Finder finderB = new Finder();
+    Finder finderC = new Finder();
+    Finder finderD = new Finder();
+    Finder finderE = new Finder();
+    assertTrue(finderA.pathFinder(a));
+    assertFalse(finderB.pathFinder(b));
+    assertTrue(finderC.pathFinder(c));
+    assertFalse(finderD.pathFinder(d));
+    assertTrue(finderE.pathFinder(e));
 
-    }
+  }
 
-    @Test
-    public void sampleTests() {
-        assertEquals(Arrays.asList("epaeii", "ygbbyh'ie", "ueh"), TopWords.top3("eLTRGYWgSu_EpAEIi.TRGtXWEkZ;UeH bnV-SKiHIUI TRGtXWEkZ kCTvxGU UeH kcOeKnPJ-UeH jlHzCBWS-EpAEIi;bnV TRGtXWEkZ yOFbCWMnDi yGBbYh'IE/kcOeKnPJ-UeH.eLTRGYWgSu SKiHIUI Fje RHXPBgVusF UeH yGBbYh'IE kcOeKnPJ!eLTRGYWgSu EpAEIi EpAEIi/EpAEIi.kCTvxGU/aERGC-sLY' RHXPBgVusF RHXPBgVusF?RHXPBgVusF yGBbYh'IE?TRGtXWEkZ sLY' yGBbYh'IE UeH bnV EpAEIi jlHzCBWS yOFbCWMnDi_yOFbCWMnDi yGBbYh'IE?sLY' kcOeKnPJ yGBbYh'IE;UeH bnV-EpAEIi?UeH UeH.jlHzCBWS yOFbCWMnDi kcOeKnPJ?bnV EpAEIi?bnV t'gxk:bnV-SKiHIUI.TRGtXWEkZ kCTvxGU sLY' RHXPBgVusF yOFbCWMnDi/bnV jlHzCBWS eLTRGYWgSu UeH_SKiHIUI,EpAEIi t'gxk.kCTvxGU EpAEIi UeH bnV_aERGC yGBbYh'IE;yGBbYh'IE;TRGtXWEkZ?yGBbYh'IE EpAEIi:bnV yGBbYh'IE TRGtXWEkZ EpAEIi.TRGtXWEkZ aERGC TRGtXWEkZ;kCTvxGU-eLTRGYWgSu EpAEIi RHXPBgVusF-jlHzCBWS yOFbCWMnDi yGBbYh'IE.RHXPBgVusF EpAEIi:jlHzCBWS:kCTvxGU?RHXPBgVusF;Fje sLY' SKiHIUI.yOFbCWMnDi?SbyxHWD RHXPBgVusF/eLTRGYWgSu TRGtXWEkZ/aERGC bnV?EpAEIi.jlHzCBWS eLTRGYWgSu jlHzCBWS eLTRGYWgSu sLY':jlHzCBWS eLTRGYWgSu_SKiHIUI SKiHIUI jlHzCBWS-jlHzCBWS sLY' yGBbYh'IE kcOeKnPJ.eLTRGYWgSu!t'gxk,TRGtXWEkZ sLY'!TRGtXWEkZ TRGtXWEkZ;sLY' EpAEIi_kCTvxGU RHXPBgVusF TRGtXWEkZ-aERGC.bnV bnV,UeH,EpAEIi bnV UeH/aERGC sLY'_sLY'_eLTRGYWgSu bnV yGBbYh'IE kCTvxGU:EpAEIi kcOeKnPJ yOFbCWMnDi TRGtXWEkZ aERGC?Fje bnV kcOeKnPJ SbyxHWD_aERGC SKiHIUI UeH yGBbYh'IE bnV:sLY' RHXPBgVusF?EpAEIi EpAEIi EpAEIi:SKiHIUI kcOeKnPJ;yGBbYh'IE;Fje TRGtXWEkZ:t'gxk yGBbYh'IE yGBbYh'IE:yGBbYh'IE bnV Fje;EpAEIi UeH,TRGtXWEkZ TRGtXWEkZ TRGtXWEkZ?sLY'_eLTRGYWgSu eLTRGYWgSu bnV sLY' kCTvxGU/SKiHIUI UeH yGBbYh'IE/eLTRGYWgSu:aERGC yOFbCWMnDi yOFbCWMnDi sLY' EpAEIi-UeH UeH-yGBbYh'IE eLTRGYWgSu TRGtXWEkZ yOFbCWMnDi/EpAEIi/yGBbYh'IE RHXPBgVusF/eLTRGYWgSu UeH sLY';RHXPBgVusF TRGtXWEkZ EpAEIi RHXPBgVusF_kcOeKnPJ SKiHIUI kCTvxGU;eLTRGYWgSu?t'gxk TRGtXWEkZ?yGBbYh'IE UeH kCTvxGU,yGBbYh'IE yGBbYh'IE?kcOeKnPJ_yOFbCWMnDi eLTRGYWgSu aERGC UeH UeH kCTvxGU-bnV-kCTvxGU sLY'-RHXPBgVusF:sLY' UeH-yGBbYh'IE UeH!yGBbYh'IE UeH-EpAEIi!EpAEIi RHXPBgVusF yOFbCWMnDi EpAEIi;RHXPBgVusF:EpAEIi SbyxHWD TRGtXWEkZ_RHXPBgVusF!TRGtXWEkZ eLTRGYWgSu?TRGtXWEkZ sLY',kCTvxGU;yGBbYh'IE kCTvxGU/jlHzCBWS bnV_jlHzCBWS,t'gxk kCTvxGU bnV jlHzCBWS.sLY' jlHzCBWS;YdfIGc bnV,TRGtXWEkZ RHXPBgVusF sLY' EpAEIi t'gxk TRGtXWEkZ/yGBbYh'IE sLY' kCTvxGU UeH kCTvxGU yGBbYh'IE yOFbCWMnDi eLTRGYWgSu t'gxk UeH UeH bnV!t'gxk eLTRGYWgSu kcOeKnPJ SKiHIUI-kCTvxGU UeH aERGC eLTRGYWgSu t'gxk:"));
-        assertEquals(Arrays.asList("e", "ddd", "aa"), TopWords.top3("e e e e DDD DDD DDD: DdD ddd aa aA Aa, bb cc cC e e e"));
-        assertEquals(Arrays.asList("e", "d", "a"),    TopWords.top3("a a a  b  c c  d d d d  e e e e e"));
-        assertEquals(Arrays.asList("won't", "wont"),  TopWords.top3("  //wont won't won't "));
-        assertEquals(Arrays.asList("e"),              TopWords.top3("  , e   .. "));
-        assertEquals(Arrays.asList(),                 TopWords.top3("  ...  "));
-        assertEquals(Arrays.asList(),                 TopWords.top3("  '  "));
-        assertEquals(Arrays.asList(),                 TopWords.top3("  '''  "));
-        assertEquals(Arrays.asList("a", "of", "on"),  TopWords.top3(Stream
-                .of("In a village of La Mancha, the name of which I have no desire to call to",
-                        "mind, there lived not long since one of those gentlemen that keep a lance",
-                        "in the lance-rack, an old buckler, a lean hack, and a greyhound for",
-                        "coursing. An olla of rather more beef than mutton, a salad on most",
-                        "nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra",
-                        "on Sundays, made away with three-quarters of his income.")
-                .collect(Collectors.joining("\n")) ));
-    }
+  @Test
+  public void sampleTests() {
+    assertEquals(Arrays.asList("epaeii", "ygbbyh'ie", "ueh"), TopWords.top3("eLTRGYWgSu_EpAEIi.TRGtXWEkZ;UeH bnV-SKiHIUI TRGtXWEkZ kCTvxGU UeH kcOeKnPJ-UeH jlHzCBWS-EpAEIi;bnV TRGtXWEkZ yOFbCWMnDi yGBbYh'IE/kcOeKnPJ-UeH.eLTRGYWgSu SKiHIUI Fje RHXPBgVusF UeH yGBbYh'IE kcOeKnPJ!eLTRGYWgSu EpAEIi EpAEIi/EpAEIi.kCTvxGU/aERGC-sLY' RHXPBgVusF RHXPBgVusF?RHXPBgVusF yGBbYh'IE?TRGtXWEkZ sLY' yGBbYh'IE UeH bnV EpAEIi jlHzCBWS yOFbCWMnDi_yOFbCWMnDi yGBbYh'IE?sLY' kcOeKnPJ yGBbYh'IE;UeH bnV-EpAEIi?UeH UeH.jlHzCBWS yOFbCWMnDi kcOeKnPJ?bnV EpAEIi?bnV t'gxk:bnV-SKiHIUI.TRGtXWEkZ kCTvxGU sLY' RHXPBgVusF yOFbCWMnDi/bnV jlHzCBWS eLTRGYWgSu UeH_SKiHIUI,EpAEIi t'gxk.kCTvxGU EpAEIi UeH bnV_aERGC yGBbYh'IE;yGBbYh'IE;TRGtXWEkZ?yGBbYh'IE EpAEIi:bnV yGBbYh'IE TRGtXWEkZ EpAEIi.TRGtXWEkZ aERGC TRGtXWEkZ;kCTvxGU-eLTRGYWgSu EpAEIi RHXPBgVusF-jlHzCBWS yOFbCWMnDi yGBbYh'IE.RHXPBgVusF EpAEIi:jlHzCBWS:kCTvxGU?RHXPBgVusF;Fje sLY' SKiHIUI.yOFbCWMnDi?SbyxHWD RHXPBgVusF/eLTRGYWgSu TRGtXWEkZ/aERGC bnV?EpAEIi.jlHzCBWS eLTRGYWgSu jlHzCBWS eLTRGYWgSu sLY':jlHzCBWS eLTRGYWgSu_SKiHIUI SKiHIUI jlHzCBWS-jlHzCBWS sLY' yGBbYh'IE kcOeKnPJ.eLTRGYWgSu!t'gxk,TRGtXWEkZ sLY'!TRGtXWEkZ TRGtXWEkZ;sLY' EpAEIi_kCTvxGU RHXPBgVusF TRGtXWEkZ-aERGC.bnV bnV,UeH,EpAEIi bnV UeH/aERGC sLY'_sLY'_eLTRGYWgSu bnV yGBbYh'IE kCTvxGU:EpAEIi kcOeKnPJ yOFbCWMnDi TRGtXWEkZ aERGC?Fje bnV kcOeKnPJ SbyxHWD_aERGC SKiHIUI UeH yGBbYh'IE bnV:sLY' RHXPBgVusF?EpAEIi EpAEIi EpAEIi:SKiHIUI kcOeKnPJ;yGBbYh'IE;Fje TRGtXWEkZ:t'gxk yGBbYh'IE yGBbYh'IE:yGBbYh'IE bnV Fje;EpAEIi UeH,TRGtXWEkZ TRGtXWEkZ TRGtXWEkZ?sLY'_eLTRGYWgSu eLTRGYWgSu bnV sLY' kCTvxGU/SKiHIUI UeH yGBbYh'IE/eLTRGYWgSu:aERGC yOFbCWMnDi yOFbCWMnDi sLY' EpAEIi-UeH UeH-yGBbYh'IE eLTRGYWgSu TRGtXWEkZ yOFbCWMnDi/EpAEIi/yGBbYh'IE RHXPBgVusF/eLTRGYWgSu UeH sLY';RHXPBgVusF TRGtXWEkZ EpAEIi RHXPBgVusF_kcOeKnPJ SKiHIUI kCTvxGU;eLTRGYWgSu?t'gxk TRGtXWEkZ?yGBbYh'IE UeH kCTvxGU,yGBbYh'IE yGBbYh'IE?kcOeKnPJ_yOFbCWMnDi eLTRGYWgSu aERGC UeH UeH kCTvxGU-bnV-kCTvxGU sLY'-RHXPBgVusF:sLY' UeH-yGBbYh'IE UeH!yGBbYh'IE UeH-EpAEIi!EpAEIi RHXPBgVusF yOFbCWMnDi EpAEIi;RHXPBgVusF:EpAEIi SbyxHWD TRGtXWEkZ_RHXPBgVusF!TRGtXWEkZ eLTRGYWgSu?TRGtXWEkZ sLY',kCTvxGU;yGBbYh'IE kCTvxGU/jlHzCBWS bnV_jlHzCBWS,t'gxk kCTvxGU bnV jlHzCBWS.sLY' jlHzCBWS;YdfIGc bnV,TRGtXWEkZ RHXPBgVusF sLY' EpAEIi t'gxk TRGtXWEkZ/yGBbYh'IE sLY' kCTvxGU UeH kCTvxGU yGBbYh'IE yOFbCWMnDi eLTRGYWgSu t'gxk UeH UeH bnV!t'gxk eLTRGYWgSu kcOeKnPJ SKiHIUI-kCTvxGU UeH aERGC eLTRGYWgSu t'gxk:"));
+    assertEquals(Arrays.asList("e", "ddd", "aa"), TopWords.top3("e e e e DDD DDD DDD: DdD ddd aa aA Aa, bb cc cC e e e"));
+    assertEquals(Arrays.asList("e", "d", "a"), TopWords.top3("a a a  b  c c  d d d d  e e e e e"));
+    assertEquals(Arrays.asList("won't", "wont"), TopWords.top3("  //wont won't won't "));
+    assertEquals(Arrays.asList("e"), TopWords.top3("  , e   .. "));
+    assertEquals(Arrays.asList(), TopWords.top3("  ...  "));
+    assertEquals(Arrays.asList(), TopWords.top3("  '  "));
+    assertEquals(Arrays.asList(), TopWords.top3("  '''  "));
+    assertEquals(Arrays.asList("a", "of", "on"), TopWords.top3(Stream
+            .of("In a village of La Mancha, the name of which I have no desire to call to",
+                    "mind, there lived not long since one of those gentlemen that keep a lance",
+                    "in the lance-rack, an old buckler, a lean hack, and a greyhound for",
+                    "coursing. An olla of rather more beef than mutton, a salad on most",
+                    "nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra",
+                    "on Sundays, made away with three-quarters of his income.")
+            .collect(Collectors.joining("\n"))));
+  }
+
+
+//[1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27, 28, 31, 39, 40, 43, 45, 49, 55, 57, 58, 64, 67, 82]
+  @Test
+  public void doubleLinearTest() {
+
+    assertEquals(22, DoubleLinear.dblLinear(10));
+    assertEquals(57, DoubleLinear.dblLinear(20));
+    assertEquals(91, DoubleLinear.dblLinear(30));
+    assertEquals(175, DoubleLinear.dblLinear(50));
+    assertEquals(80914, DoubleLinear.dblLinear(6000));
+    assertEquals(227638, DoubleLinear.dblLinear(13526));
+
+  }
+  /* Visualization of the problem:
+  Set one: 1
+  Set two: (3, 4)
+  Set Three: (7, 10) (9, 13)
+  Set three Sorted: 7, 9  10, 13
+  Set Four: (15, 22)  (19, 28)  (21, 31)  (27, 40)
+  Set Four Sorted: 15, 19, 21, 22, 27, 28, 31, 40
+  Each set multiplies by 2. Which means set 21 would have over 1,000,000 elements
+  And 22 sets would have over 2 million.
+
+
+  list.add(1);  list = [1]
+  int i = 0;
+  for list < n i++ {
+  sort(add(get(i))); third loop: [1, 3, 4, 7, 9, 10, 13 ]
+  }
+
+  add(x) {   //Alternatively, I could make this an addSet method, if I wanted to recursively add all the values from the previously created set. That way I am more in line with the concept shown above, and I also ensure less sorts are required. Because right now, a sort is done for every other added number.
+  list.add(2 * x + 1)
+  list.add(3 * x + 1)    first loop = [1, 3, 4]  second loop: [1, 3, 4, 7, 10 ] third loop: [1, 3, 4, 7, 10, 9, 13]
+  }
+  addSet(x) {   //I need this method to call itself recursively until the last set of numbers has been processed.
+  list.add(2 * x + 1)
+  list.add(3 * x + 1)    first loop = [1, 3, 4]  second loop: [1, 3, 4, 7, 10 ] third loop: [1, 3, 4, 7, 10, 9, 13]
+  }
+  get(x) {
+  list.get(x);
+  }
+  sort() {
+  list = stream.of(list).sorted().toArray()
+  }
+   */
+
+
 }
