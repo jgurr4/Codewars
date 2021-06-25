@@ -4,10 +4,9 @@
 package codeWarsJava;
 
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.stream.*;
-
+import java.util.Random;
 import static org.junit.Assert.*;
 
 
@@ -121,38 +120,13 @@ public class AppTest {
     assertEquals(227638, DoubleLinear.dblLinear(13526));
 
   }
-  /* Visualization of the problem:
-  Set one: 1
-  Set two: (3, 4)
-  Set Three: (7, 10) (9, 13)
-  Set three Sorted: 7, 9  10, 13
-  Set Four: (15, 22)  (19, 28)  (21, 31)  (27, 40)
-  Set Four Sorted: 15, 19, 21, 22, 27, 28, 31, 40
-  Each set multiplies by 2. Which means set 21 would have over 1,000,000 elements
-  And 22 sets would have over 2 million.
 
-
-  list.add(1);  list = [1]
-  int i = 0;
-  for list < n i++ {
-  sort(add(get(i))); third loop: [1, 3, 4, 7, 9, 10, 13 ]
+  @Test
+  public void josephusSurvivorTest() {
+    assertEquals(4, JosephusSurvivor.josephusSurvivor(7, 3));
+    assertEquals(10, JosephusSurvivor.josephusSurvivor(11, 19));
+    assertEquals(28, JosephusSurvivor.josephusSurvivor(40, 3));
+    assertEquals(100, JosephusSurvivor.josephusSurvivor(100, 1));
   }
-
-  add(x) {   //Alternatively, I could make this an addSet method, if I wanted to recursively add all the values from the previously created set. That way I am more in line with the concept shown above, and I also ensure less sorts are required. Because right now, a sort is done for every other added number.
-  list.add(2 * x + 1)
-  list.add(3 * x + 1)    first loop = [1, 3, 4]  second loop: [1, 3, 4, 7, 10 ] third loop: [1, 3, 4, 7, 10, 9, 13]
-  }
-  addSet(x) {   //I need this method to call itself recursively until the last set of numbers has been processed.
-  list.add(2 * x + 1)
-  list.add(3 * x + 1)    first loop = [1, 3, 4]  second loop: [1, 3, 4, 7, 10 ] third loop: [1, 3, 4, 7, 10, 9, 13]
-  }
-  get(x) {
-  list.get(x);
-  }
-  sort() {
-  list = stream.of(list).sorted().toArray()
-  }
-   */
-
 
 }
