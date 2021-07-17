@@ -72,18 +72,34 @@ public class AppTest {
                 ".W...\n" +
                 ".W.W.\n" +
                 "...W.\n" +
-                "...W.";
+                "...W.",
+
+            f = ".W.W.W......",
+
+            g = "..W...W\n" +
+                ".W..W..";
 
     Finder finderA = new Finder();
     Finder finderB = new Finder();
     Finder finderC = new Finder();
     Finder finderD = new Finder();
     Finder finderE = new Finder();
+    Finder finderF = new Finder();
+    Finder finderG = new Finder();
+    System.out.println("test A:");
     assertTrue(finderA.pathFinder(a));
+    System.out.println("test B:");
     assertFalse(finderB.pathFinder(b));
+    System.out.println("test C:");
     assertTrue(finderC.pathFinder(c));
+    System.out.println("test D:");
     assertFalse(finderD.pathFinder(d));
+    System.out.println("test E:");
     assertTrue(finderE.pathFinder(e));
+    System.out.println("test F:");
+    assertFalse(finderF.pathFinder(f));
+    System.out.println("test G:");
+    assertFalse(finderG.pathFinder(g));
 
   }
 

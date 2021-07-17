@@ -6,20 +6,25 @@ import java.util.*;
 // top left corner.
 // This method keeps string as it is, but determines the number of columns and uses that to gauge location.
 public class Finder {
-  String newMaze;
-  char[] mazeArr;
-  Boolean goalReached = false;
-//  Boolean noMoreSpace = false;
-  int rowNum = 1;
-  int colNum = 0;
+  static String newMaze;
+  static char[] mazeArr;
+  static Boolean goalReached;
+  static Boolean noMoreSpace;
+  static int rowNum;
+  static int colNum;
 
-  public boolean pathFinder(String maze) {
-    colNum = maze.indexOf('\n');
+  public static boolean pathFinder(String maze) {
+    rowNum = 1;
+    colNum = maze.indexOf('\n') > -1 ? maze.indexOf('\n') : maze.length();
+    goalReached = false;
+    noMoreSpace = false;
     Boolean hasOnlyOneRow = maze.indexOf('\n') == -1 ? true : false;
     Boolean firstRowHasW = maze.substring(0, colNum).indexOf('W') == -1 ? false : true;
     if (hasOnlyOneRow && firstRowHasW) {
+      System.out.println("There is only one row and cannot reach end.");
       return false;
     } else if (hasOnlyOneRow) {
+      System.out.println("There is only one row and end is reachable.");
       return true;
     }
 
@@ -42,59 +47,71 @@ public class Finder {
     for (int i = 0; i < rowNum; i++) {
       System.out.println(maze.substring(colNum * i, colNum * i + colNum));
     }
-    System.out.println("");
+    System.out.println("Can reach exit: " + goalReached + "\n");
     return goalReached;
   }
 
-  private Boolean solve(int position) {
+  private static Boolean solve(int position) {
     mazeArr[position] = 'x';
     goalReached = mazeArr[mazeArr.length - 1] == 'x' ? true : false;
     if (!goalReached) { //&& !noMoreSpace
       if (checkRight(mazeArr, position, colNum)) {
         position += 1;
         solve(position);
+        if (!goalReached && noMoreSpace) {
+          position -= 1;
+          noMoreSpace = false;
+        }
       }
       if (checkDown(mazeArr, position, colNum)) {
         position += colNum;
         solve(position);
+        if (!goalReached && noMoreSpace) {
+          position -= colNum;
+          noMoreSpace = false;
+        }
       }
       if (checkLeft(mazeArr, position, colNum)) {
         position -= 1;
         solve(position);
+        if (!goalReached && noMoreSpace) {
+          position += 1;
+          noMoreSpace = false;
+        }
       }
       if (checkUp(mazeArr, position, colNum)) {
         position -= colNum;
         solve(position);
+      } else {
+        noMoreSpace = true;
       }
-//      else {
-//        noMoreSpace = true;
-//      }
     }
     return goalReached;
   }
 
-  private boolean checkRight(char[] mazeArr, int currentPos, int colNum) {
+
+  private static boolean checkRight(char[] mazeArr, int currentPos, int colNum) {
     if (currentPos + 1 < mazeArr.length) {
       return mazeArr[currentPos + 1] == '.' && currentPos % colNum != colNum - 1;
     }
     return false;
   }
 
-  private boolean checkLeft(char[] mazeArr, int currentPos, int colNum) {
-    if (currentPos - 1 < mazeArr.length) {
+  private static boolean checkLeft(char[] mazeArr, int currentPos, int colNum) {
+    if (currentPos - 1 > 0) {
       return mazeArr[currentPos - 1] == '.' && currentPos % colNum != 0;
     }
     return false;
   }
 
-  private boolean checkDown(char[] mazeArr, int currentPos, int colNum) {
+  private static boolean checkDown(char[] mazeArr, int currentPos, int colNum) {
     if (currentPos + colNum < mazeArr.length) {
       return mazeArr[currentPos + colNum] == '.';
     }
     return false;
   }
 
-  private boolean checkUp(char[] mazeArr, int currentPos, int colNum) {
+  private static boolean checkUp(char[] mazeArr, int currentPos, int colNum) {
     if (currentPos - colNum > 0) {
       return mazeArr[currentPos - colNum] == '.';
     }
