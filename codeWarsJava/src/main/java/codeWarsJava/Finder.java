@@ -1,8 +1,139 @@
 package codeWarsJava;
 
 import java.util.*;
-import java.util.regex.*;
 
+// The goal of this kata is simply to find out if the bottom right corner of a given maze can be reached from the
+// top left corner.
+// This method keeps string as it is, but determines the number of columns and uses that to gauge location.
+public class Finder {
+  String newMaze;
+  char[] mazeArr;
+  Boolean goalReached = false;
+//  Boolean noMoreSpace = false;
+  int rowNum = 1;
+  int colNum = 0;
+
+  public boolean pathFinder(String maze) {
+    colNum = maze.indexOf('\n');
+    Boolean hasOnlyOneRow = maze.indexOf('\n') == -1 ? true : false;
+    Boolean firstRowHasW = maze.substring(0, colNum).indexOf('W') == -1 ? false : true;
+    if (hasOnlyOneRow && firstRowHasW) {
+      return false;
+    } else if (hasOnlyOneRow) {
+      return true;
+    }
+
+    newMaze = maze;
+    while (!hasOnlyOneRow) {
+      rowNum++;
+      newMaze = newMaze.replaceFirst("\n", "");  // This might be an inneficient way to replace \n, because it creates a new string for each \n. But as long as there are not thousands of rows it shouldn't be that big of a deal. However, if there is, then I'll need to use some other method to get the rows. And just replace all \n at once.
+      hasOnlyOneRow = newMaze.indexOf('\n') == -1 ? true : false;
+    }
+    mazeArr = newMaze.toCharArray();
+
+    int currentPos = 0;
+    long start = System.currentTimeMillis();
+    Boolean goalReached = solve(currentPos);
+    long time = System.currentTimeMillis() - start;
+    System.out.println("Time took: " + time);
+
+    // This code is simply for testing purposes. Remove for finalized kata.
+    maze = Arrays.toString(mazeArr).replace("[", "").replace(",", "").replace(" ", "");
+    for (int i = 0; i < rowNum; i++) {
+      System.out.println(maze.substring(colNum * i, colNum * i + colNum));
+    }
+    System.out.println("");
+    return goalReached;
+  }
+
+  private Boolean solve(int position) {
+    mazeArr[position] = 'x';
+    goalReached = mazeArr[mazeArr.length - 1] == 'x' ? true : false;
+    if (!goalReached) { //&& !noMoreSpace
+      if (checkRight(mazeArr, position, colNum)) {
+        position += 1;
+        solve(position);
+      }
+      if (checkDown(mazeArr, position, colNum)) {
+        position += colNum;
+        solve(position);
+      }
+      if (checkLeft(mazeArr, position, colNum)) {
+        position -= 1;
+        solve(position);
+      }
+      if (checkUp(mazeArr, position, colNum)) {
+        position -= colNum;
+        solve(position);
+      }
+//      else {
+//        noMoreSpace = true;
+//      }
+    }
+    return goalReached;
+  }
+
+  private boolean checkRight(char[] mazeArr, int currentPos, int colNum) {
+    if (currentPos + 1 < mazeArr.length) {
+      return mazeArr[currentPos + 1] == '.' && currentPos % colNum != colNum - 1;
+    }
+    return false;
+  }
+
+  private boolean checkLeft(char[] mazeArr, int currentPos, int colNum) {
+    if (currentPos - 1 < mazeArr.length) {
+      return mazeArr[currentPos - 1] == '.' && currentPos % colNum != 0;
+    }
+    return false;
+  }
+
+  private boolean checkDown(char[] mazeArr, int currentPos, int colNum) {
+    if (currentPos + colNum < mazeArr.length) {
+      return mazeArr[currentPos + colNum] == '.';
+    }
+    return false;
+  }
+
+  private boolean checkUp(char[] mazeArr, int currentPos, int colNum) {
+    if (currentPos - colNum > 0) {
+      return mazeArr[currentPos - colNum] == '.';
+    }
+    return false;
+  }
+
+}
+
+/* Reserved in case I need this original version again.
+  private Boolean Solve(String maze, int colNum, char[] mazeArr) {
+    int currentPos = 0;
+    Boolean goalReached = false;
+    Boolean noMoreSpace = false;
+    while (!goalReached && !noMoreSpace) {
+      mazeArr[currentPos] = 'x';
+      if (mazeArr[currentPos + 1] == '.' && currentPos % colNum != colNum - 1) {   // Second condition checks to make sure there are cells to the right of current position for the current row.
+        currentPos += 1;
+      } else if (checkDown(mazeArr, currentPos, colNum)) {
+        currentPos += colNum;
+      } else if (mazeArr[currentPos - 1] == '.' && currentPos % colNum != 0) {   // Second condition checks to make sure there are cells to the left of current position for the current row.
+        currentPos -= 1;
+      } else if (checkUp(mazeArr, currentPos, colNum)) {
+        currentPos -= colNum;
+      } else {
+        noMoreSpace = true;
+      }
+      goalReached = currentPos == maze.length() - 1 ? true : false;
+    }
+    return goalReached;
+  }
+*/
+// Currently this cannot handle hitting a wall that it has to go up to pass. It is made to try going right and down which will cause it to inevitably make a circle around and block itself.
+// Currently this cannot handle deadends where 3 of the sides are walls. Since it cannot go backwards.
+// My plan is to make it recursively go back the same path it went down removing each x, until it finds another
+// path that it didn't already go down, and attempt to go down it, until it either finds another dead end or the goal.
+// For each dead end it will repeat this until every space has been used.
+
+
+/* this method turns it into a two dimensional char array.
 public class Finder {
   static int[][] DIRECTIONS = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
   static int[] exit = new int[2];
@@ -88,6 +219,7 @@ public class Finder {
     return false;
   }
 }
+*/
 
 
 

@@ -6,7 +6,7 @@ package codeWarsJava;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.stream.*;
-import java.util.Random;
+
 import static org.junit.Assert.*;
 
 
@@ -44,35 +44,35 @@ public class AppTest {
     assertEquals(0, new Multiples().sumOfMultiples(-25));
   }
 
-  @Test //FIXME: This test fails.
+  @Test
   public void testFinder() {
     String a = ".W.\n" +
-            ".W.\n" +
-            "...",
+               ".W.\n" +
+               "...",
 
             b = ".W.\n" +
-                    ".W.\n" +
-                    "W..",
+                ".W.\n" +
+                "W..",
 
             c = "......\n" +
-                    "......\n" +
-                    "......\n" +
-                    "......\n" +
-                    "......\n" +
-                    "......",
+                "......\n" +
+                "......\n" +
+                "......\n" +
+                "......\n" +
+                "......",
 
             d = "......\n" +
-                    "......\n" +
-                    "......\n" +
-                    "......\n" +
-                    ".....W\n" +
-                    "....W.",
+                "......\n" +
+                "......\n" +
+                "......\n" +
+                ".....W\n" +
+                "....W.",
 
             e = ".W...\n" +
-                    ".W...\n" +
-                    ".W.W.\n" +
-                    "...W.\n" +
-                    "...W.";
+                ".W...\n" +
+                ".W.W.\n" +
+                "...W.\n" +
+                "...W.";
 
     Finder finderA = new Finder();
     Finder finderB = new Finder();
@@ -127,6 +127,18 @@ public class AppTest {
     assertEquals(10, JosephusSurvivor.josephusSurvivor(11, 19));
     assertEquals(28, JosephusSurvivor.josephusSurvivor(40, 3));
     assertEquals(100, JosephusSurvivor.josephusSurvivor(100, 1));
+  }
+
+  @Test
+  public void playgroundTest() {
+    assertEquals(3, Playground.modulo(8, 5));  //How to use static methods.
+    assertEquals(5, MorePlay.modulo(11, 6));
+    assertEquals(2, MorePlay.divide(8, 4));
+    assertEquals(4, Playground.Something.multiply(2, 2));  //Accessing nested class method.
+    final int totalRuns = Playground.totalRuns;
+    System.out.println("total runs = " + totalRuns);
+    Playground myPlay = new Playground();         //How to use non-static methods.
+    assertEquals(16, myPlay.exponent(2, 4));
   }
 
 }

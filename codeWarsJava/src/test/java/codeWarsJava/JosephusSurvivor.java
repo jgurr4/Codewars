@@ -30,7 +30,7 @@ public class JosephusSurvivor {
   }
 }
 /*
-//This solution works. But it is a little cheap because it's pure math.
+//This solution works. But it is a little cheap because it's pure math with recursion. Since this is a bilinear search tree. This recursion is perfect for it.
   public static int josephusSurvivor(int n, int k) {
     System.out.println(n + " " + k);
     if (n == 1 || k == 1)

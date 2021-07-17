@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 //Don't forget to remove duplicates and sort the final result before you retrieve n.
 // Both my solutions fail at the same spot. Which means there is a common trend between both.
-// They both fail once n is higher than 6000. I have to figure out why that is.
+// They both fail once n is higher than 6000 unless I force program to go deeper than it needs to. I have to figure out why that is.
 public class DoubleLinear {
   static int max = 0;
   static int level = 0;
