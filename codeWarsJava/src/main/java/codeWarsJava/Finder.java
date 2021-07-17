@@ -5,6 +5,7 @@ import java.util.*;
 // The goal of this kata is simply to find out if the bottom right corner of a given maze can be reached from the
 // top left corner.
 // This method keeps string as it is, but determines the number of columns and uses that to gauge location.
+// TODO: Come back to this kata later and review the other solutions to see how I could improve.
 public class Finder {
   static String newMaze;
   static char[] mazeArr;
