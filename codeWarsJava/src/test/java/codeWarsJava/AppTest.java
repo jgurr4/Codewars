@@ -4,6 +4,7 @@
 package codeWarsJava;
 
 import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.stream.*;
 
@@ -47,37 +48,56 @@ public class AppTest {
   @Test
   public void testFinder() {
     String a = ".W.\n" +
-               ".W.\n" +
-               "...",
+            ".W.\n" +
+            "...",
 
             b = ".W.\n" +
-                ".W.\n" +
-                "W..",
+                    ".W.\n" +
+                    "W..",
 
             c = "......\n" +
-                "......\n" +
-                "......\n" +
-                "......\n" +
-                "......\n" +
-                "......",
+                    "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    "......",
 
             d = "......\n" +
-                "......\n" +
-                "......\n" +
-                "......\n" +
-                ".....W\n" +
-                "....W.",
+                    "......\n" +
+                    "......\n" +
+                    "......\n" +
+                    ".....W\n" +
+                    "....W.",
 
             e = ".W...\n" +
-                ".W...\n" +
-                ".W.W.\n" +
-                "...W.\n" +
-                "...W.",
+                    ".W...\n" +
+                    ".W.W.\n" +
+                    "...W.\n" +
+                    "...W.",
 
             f = ".W.W.W......",
 
             g = "..W...W\n" +
-                ".W..W..";
+                    ".W..W..",
+
+            h = "......W.............W......W......W......W.............W\n" +
+                    "......W......W......W.............W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W.............W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W.............W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    ".............W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W.............W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W......W......W......W......W\n" +
+                    "......W......W......W......W.............W......W.....W.";
 
     Finder finderA = new Finder();
     Finder finderB = new Finder();
@@ -86,6 +106,7 @@ public class AppTest {
     Finder finderE = new Finder();
     Finder finderF = new Finder();
     Finder finderG = new Finder();
+    Finder finderH = new Finder();
     System.out.println("test A:");
     assertTrue(finderA.pathFinder(a));
     System.out.println("test B:");
@@ -100,6 +121,8 @@ public class AppTest {
     assertFalse(finderF.pathFinder(f));
     System.out.println("test G:");
     assertFalse(finderG.pathFinder(g));
+    System.out.println("test H:");
+    assertFalse(finderH.pathFinder(h));
 
   }
 
@@ -124,7 +147,7 @@ public class AppTest {
   }
 
 
-//[1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27, 28, 31, 39, 40, 43, 45, 49, 55, 57, 58, 64, 67, 82]
+  //[1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27, 28, 31, 39, 40, 43, 45, 49, 55, 57, 58, 64, 67, 82]
   @Test
   public void doubleLinearTest() {
 

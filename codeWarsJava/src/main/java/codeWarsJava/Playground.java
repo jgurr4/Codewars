@@ -1,9 +1,11 @@
 package codeWarsJava;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.*;
-import java.util.Date;
+import java.util.*;
+
 
 public class Playground {
   public static final double percent = 30.5;
@@ -81,6 +83,7 @@ public class Playground {
       return result;
     }
   }
+
 }
 
 class MorePlay extends Playground {
@@ -90,3 +93,62 @@ class MorePlay extends Playground {
     return result;
   }
 }
+
+class DataStructures {
+
+  public static void collections() {
+    // Questions to ask before using a linear data structure:
+    // Is it immutable? Is it thread-safe/synchronized? Does it allow null values?
+    // How fast are its main operations in Big O Notation compared to other data structures?
+    // Is it self-resizing or in other words Dynamic? Is it ordered or retain insertion order?
+    // Is it self-sorting?
+    // You can get these answers by looking at the source code or documentation of each class.
+    // Big O Levels:  --> https://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly
+    // Fastest: O(1)      Constant
+    // Faster: O(log(n))  Variable   //For example, Hash classes are like this for lookup, because you don't need to search through all the names of phonebook you just use divide and conquer strategy to find what subsection (alphabet letter section) their name is in, then search through that list to find their name.
+    // Fast: O(n)         Linear
+    // Slowest: O(n^2)    Quadratic
+
+    char[] ca = {'a', 'b', 'c'};             // Simple array. Allows index lookup
+
+    // List and implementations:  Lists are resizable and typically keep their input order.
+    ArrayList al = new ArrayList();          // Resizable array and works with iterator.
+    Vector v = new Vector();                 // Synchronized/thread-safe alternative to ArrayList.
+    Iterator<String> iter = al.iterator();   // Iterator is superior replacement to Enumeration. Since it allows .remove during iteration and shorter method names.
+    while (iter.hasNext()) {                       // Example looping through ArrayList using iterator.
+      iter.next();
+    }
+
+    //Stack/Deque/Queue and List implementations:
+    LinkedList ll = new LinkedList();  // Useful for faster adding and removing values vs ArrayList, since doesn't need to shift all values. Also implements stack and queue methods through deque interface.
+    ArrayDeque ar = new ArrayDeque();  // Better than LinkedList for Queues, Better than Stack for Stacks.
+
+    // Set implementations:  Sets don't contain duplicates.
+    HashSet<String> hs = new HashSet<>();  // Faster at search lookup than normal arrays. Un-ordered.
+    LinkedHashSet<Object> lhs = new LinkedHashSet<>();  // Ordered.
+    TreeSet<String> ts = new TreeSet<>();  // Self-sorted and no-duplicates linear data structure. Useful when you need to sort for every element added to the structure.
+
+    // Map implemenations:   Maps are key-value arrays. Dictionary is similar because it is the grandfather of all key-value pair classes.
+    HashMap<String, Integer> hm = new HashMap<>();  // Un-ordered entries
+    Hashtable<String, Integer> ht = new Hashtable<String, Integer>();  // synchronized version of hashmap that doesn't permit nulls. Synchronized means thread-safe by default.
+    LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();   // ordered entries.
+    TreeMap<String, Integer> tm = new TreeMap<>();  // sorted by key.
+
+//    method examples:
+    Collections.sort(al); // Collections methods are useful to perform generic operations on collections classes.
+    Collections.synchronizedList(al);  // A way to make ArrayList synchronized. Also you can do .synchronizedSet or Map as well.
+    Arrays.toString(ca);  // Arrays class also has useful methods to perform on Java Arrays. But not collections.
+    Arrays.sort(ca);
+
+
+  }
+}
+
+class algorithms {
+  public static void onDataStructures(){
+    // Trees for sorting and binary search trees (divide and conquer)
+    // merge sort and quick sort etc...
+  }
+
+}
+

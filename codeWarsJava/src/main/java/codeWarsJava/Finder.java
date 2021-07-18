@@ -6,6 +6,8 @@ import java.util.*;
 // top left corner.
 // This method keeps string as it is, but determines the number of columns and uses that to gauge location.
 // TODO: Come back to this kata later and review the other solutions to see how I could improve.
+// For example, one issue this has, is it is a lot of lines of code.
+// Another issue is that it searches every possible cell if the exit is blocked. It's not smart enough to realize the exit is completely blocked. (see test D)
 public class Finder {
   static String newMaze;
   static char[] mazeArr;
