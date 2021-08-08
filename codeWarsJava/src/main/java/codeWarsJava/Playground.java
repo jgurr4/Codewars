@@ -1,8 +1,8 @@
 package codeWarsJava;
 
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
+import javax.swing.text.DateFormatter;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
 
@@ -98,7 +98,7 @@ class DataStructures {
 
   public static void collections() {
     // Questions to ask before using a linear data structure:
-    // Is it immutable? Is it thread-safe/synchronized? Does it allow null values?
+    // Is it immutable? Is it synchronized? Does it allow null values?
     // How fast are its main operations in Big O Notation compared to other data structures?
     // Is it self-resizing or in other words Dynamic? Is it ordered or retain insertion order?
     // Is it self-sorting?
@@ -144,11 +144,43 @@ class DataStructures {
   }
 }
 
-class algorithms {
+class Algorithms {
   public static void onDataStructures(){
     // Trees for sorting and binary search trees (divide and conquer)
     // merge sort and quick sort etc...
   }
+}
 
+class ThreadSafety {
+  public static void wrapping() {
+    /*
+    // There are many ways to achieve thread-safety in Java. The most recommended ways is to use
+    // Immutable classes/structures for your objects. Where that isn't possible, you have alternative methods:
+    ThreadLocal           (Forces a object created to stay in the thread in which it was created.)
+    Synchronization wrapper   (Waits until all threads have synced to the object state before moving on. It's basically the same as using 1 thread at a time, so you lose the benefit of multi-threaded processors.)
+    asynchronous libraries/frameworks   (Has all the benefits of multi-threaded processors, with lower level synchronization to prevent objects being incorrect when read.)
+    Java 8 Streams      (Allows operations because they don't change the original objects even if mutable.)
+    Reactive Streams   (A combination of asynchronous libraries with java 8 Streams on steroids. It has all the benefits of )
+    // Here are some examples of useful immutable and thread-safe classes:
+    String
+    Any primitive java type.
+    Google Guava Immutable Collections  (Is a decent alternative to default java non-immutable and non-threadsafe collections).
+    Making your own Immutable data structures.
+    // The ultimate thread-safe setup would be using Reactive Streams library like RXJava with Immutable Data Structures
+    // that either you made or the ones in Google Guava.
+     */
+    // ThreadLocal: There are two ways to create a object with ThreadLocal:
+    final ThreadLocal<ArrayList> al = new ThreadLocal<>();
+    al.get().add("hello");
+    al.get().get(0);
+    final ThreadLocal<ArrayList> al2 = ThreadLocal.withInitial(() -> new ArrayList<String>());
+    al2.get().add("initialExample");
+    al2.get().get(0);
+    // DateTime and DateTimeFormatter:
+    // Classes in Java.time are designed to work with multi-threading. However, DateFormatter which is in
+    // java.swing.text are not thread-safe. So if you must use them, you can use ThreadLocal to make them
+    // thread-safe like so: Modern programmers will use classes like DateTimeFormatter found in java.time.
+    // So you shouldn't ever be using the java.swing.text classes for this.
+  }
 }
 

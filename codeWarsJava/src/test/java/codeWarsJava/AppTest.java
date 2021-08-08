@@ -3,11 +3,13 @@
  */
 package codeWarsJava;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.stream.*;
 
+import static java.util.stream.Collectors.joining;
 import static org.junit.Assert.*;
 
 
@@ -143,7 +145,7 @@ public class AppTest {
                     "coursing. An olla of rather more beef than mutton, a salad on most",
                     "nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra",
                     "on Sundays, made away with three-quarters of his income.")
-            .collect(Collectors.joining("\n"))));
+            .collect(joining("\n"))));
   }
 
 
@@ -189,4 +191,32 @@ public class AppTest {
     assertEquals(16, myPlay.exponent(2, 4));
   }
 
+  @Test
+  public void snailTest() {
+    int[][] array =
+            {{1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}};
+    int[] r = {1, 2, 3, 6, 9, 8, 7, 4, 5};
+    int[][] arr2 =
+            {{1, 2, 3, 9},
+            {4, 5, 6, 4},
+            {7, 8, 9, 1},
+            {1, 2, 3, 4}};
+    int[] r2 = {1, 2, 3, 9, 4, 1, 4, 3, 2, 1, 7, 4, 5, 6, 9, 8};
+
+    test(array, r);
+    test(arr2, r2);
+  }
+
+  public String int2dToString(int[][] a) {
+    return Arrays.stream(a).map(row -> Arrays.toString(row)).collect(joining("\n"));
+  }
+
+  public void test(int[][] array, int[] result) {
+    String text = int2dToString(array) + " should be sorted to " + Arrays.toString(result);
+    System.out.println(text);
+    Assert.assertArrayEquals(result, Snail.snail(array));
+  }
 }
+
