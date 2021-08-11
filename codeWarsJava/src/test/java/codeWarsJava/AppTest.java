@@ -3,6 +3,7 @@
  */
 package codeWarsJava;
 
+import codeWarsJava.algorithms.selectionSort;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -218,5 +219,13 @@ public class AppTest {
     System.out.println(text);
     Assert.assertArrayEquals(result, Snail.snail(array));
   }
+
+  @Test
+  public void selectionSortTest() {
+    assertEquals(Arrays.toString(new int[]{4, 5, 12, 23, 23, 25, 28, 30}), Arrays.toString(selectionSort.sort(new int[]{23, 12, 4, 5, 30, 28, 25, 23})));
+    assertEquals(Arrays.toString(new int[]{}), Arrays.toString(selectionSort.sort(new int[]{})));
+  }
+
 }
+
 
