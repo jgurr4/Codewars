@@ -222,8 +222,16 @@ public class AppTest {
 
   @Test
   public void selectionSortTest() {
-    assertEquals(Arrays.toString(new int[]{4, 5, 12, 23, 23, 25, 28, 30}), Arrays.toString(selectionSort.sort(new int[]{23, 12, 4, 5, 30, 28, 25, 23})));
+    assertEquals(Arrays.toString(new int[]{4, 5, 12, 23, 23, 25, 28, 30}), Arrays.toString(
+            selectionSort.sort(new int[]{23, 12, 4, 5, 30, 28, 25, 23})
+    ));
     assertEquals(Arrays.toString(new int[]{}), Arrays.toString(selectionSort.sort(new int[]{})));
+    assertEquals(Arrays.toString(new char[]{'a','a','a','b','b','c','c','c','d','d','d','d','e','e','e'}), Arrays.toString(selectionSort.sort(new char[]{'d','e','b','a','c','c','e','d','d','a','b','c','a','e','d'})));
+/*
+    assertEquals(Arrays.toString(new String[]{"bob", "john", "jose", "kevin", "mary"}), Arrays.toString(
+            selectionSort.sort(new String[]{"john", "mary", "kevin", "bob", "jose"})
+    ));
+*/
   }
 
 }
