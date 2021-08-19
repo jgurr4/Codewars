@@ -3,7 +3,7 @@
  */
 package codeWarsJava;
 
-import codeWarsJava.algorithms.selectionSort;
+import codeWarsJava.algorithms.SelectionSort;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -182,14 +182,14 @@ public class AppTest {
 
   @Test
   public void playgroundTest() {
+    Playground myPlay = new Playground();         //How to use non-static methods.
+    assertEquals(16, myPlay.exponent(2, 4));
     assertEquals(3, Playground.modulo(8, 5));  //How to use static methods.
     assertEquals(5, MorePlay.modulo(11, 6));
     assertEquals(2, MorePlay.divide(8, 4));
     assertEquals(4, Playground.Something.multiply(2, 2));  //Accessing nested class method.
     final int totalRuns = Playground.totalRuns;
     System.out.println("total runs = " + totalRuns);
-    Playground myPlay = new Playground();         //How to use non-static methods.
-    assertEquals(16, myPlay.exponent(2, 4));
   }
 
   @Test
@@ -223,15 +223,21 @@ public class AppTest {
   @Test
   public void selectionSortTest() {
     assertEquals(Arrays.toString(new int[]{4, 5, 12, 23, 23, 25, 28, 30}), Arrays.toString(
-            selectionSort.sort(new int[]{23, 12, 4, 5, 30, 28, 25, 23})
+            SelectionSort.sort(new int[]{23, 12, 4, 5, 30, 28, 25, 23})
     ));
-    assertEquals(Arrays.toString(new int[]{}), Arrays.toString(selectionSort.sort(new int[]{})));
-    assertEquals(Arrays.toString(new char[]{'a','a','a','b','b','c','c','c','d','d','d','d','e','e','e'}), Arrays.toString(selectionSort.sort(new char[]{'d','e','b','a','c','c','e','d','d','a','b','c','a','e','d'})));
+    assertEquals(Arrays.toString(new int[]{}), Arrays.toString(SelectionSort.sort(new int[]{})));
+    assertEquals(Arrays.toString(new char[]{'a','a','a','b','b','c','c','c','d','d','d','d','e','e','e'}), Arrays.toString(SelectionSort.sort(new char[]{'d','e','b','a','c','c','e','d','d','a','b','c','a','e','d'})));
 /*
     assertEquals(Arrays.toString(new String[]{"bob", "john", "jose", "kevin", "mary"}), Arrays.toString(
-            selectionSort.sort(new String[]{"john", "mary", "kevin", "bob", "jose"})
+            SelectionSort.sort(new String[]{"john", "mary", "kevin", "bob", "jose"})
     ));
 */
+  }
+
+  @Test
+  public void removeThreesTest() {
+    assertEquals("[1, 2, 4, 5, 6]", RemoveThrees.removeThrees(new int[]{1, 2, 3, 4, 5, 6}));
+    assertEquals("[6, 2, 80, 23, 14, 27, 18, 28, 45, 10, 9, 17]", RemoveThrees.removeThrees(new int[]{6, 3, 2, 80, 3, 23, 3, 14, 27, 3, 18, 28, 45, 3, 10, 9, 17}));
   }
 
 }

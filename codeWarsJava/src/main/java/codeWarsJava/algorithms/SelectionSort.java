@@ -10,7 +10,7 @@ You can imagine them like two separate arrays. The first original array is slowl
 
 import java.util.Arrays;
 
-public class selectionSort {
+public class SelectionSort {
   public static int[] sort(int[] arr) {
     if (arr.length == 0) {
       System.out.println(Arrays.toString(arr));

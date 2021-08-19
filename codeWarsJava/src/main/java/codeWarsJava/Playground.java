@@ -46,22 +46,22 @@ public class Playground {
 
   public int exponent(int a, int b) {
     final int pow = (int) Math.pow(a, b); // I cast as int because otherwise it returns double.
+    System.out.println("exponent is: " + pow); // 16
     //Alternatively I could use bitwise operator and then I wouldn't have to cast it at all.
-    System.out.printf("$%4.2f %n", 22.03);
-    System.out.printf("%,d %n", 100000);
-    System.out.printf("Hashcode for %s is: %h %n", "John", "John");
+    System.out.printf("$%4.2f %n", 22.03); // $22.03
+    System.out.printf("%,d %n", 100000);  // 100,000
+    System.out.printf("Hashcode for %s is: %h %n", "John", "John"); // Hashcode for John is: 15bt81b937t1
     Long n = 123124389515819L;
 //    BigDecimal bigDec = 1.21134511234124313412431242345322;
     double bigDec = n / 1000000000000.0;
-    System.out.println("BigDecimal is: " + bigDec);
-    System.out.printf("Adding decimal to number is: %2.2f %n", 123456f);
+    System.out.println("BigDecimal is: " + bigDec); // 123.124389515819
+    System.out.printf("Adding decimal to number is: %.2f %n", 123456f); // 123456.00
     float num = 123456f;
     DecimalFormat numFormat = new DecimalFormat("###.000");
-    System.out.println("alternative add decimal is: " + numFormat.format(num));
-    System.out.println("exponent is: " + pow);
+    System.out.println("alternative add decimal is: " + numFormat.format(num)); // 123456.000 same as above, the number of digits before decimal is minimum not maximum.
     LocalDate date = LocalDate.now();
-    System.out.printf("%1$tA, %1$tB %1$tm %1$tY %n", date);
-    System.out.println("full date is: " + date);
+    System.out.printf("%1$tA, %1$tB %1$tm %1$tY %n", date);  // Wednesday, August 08 2021
+    System.out.println("full date is: " + date);  // full date is: 2021-08-18
     return pow;
   }
 
@@ -153,7 +153,7 @@ class Algorithms {
 
 class ThreadSafety {
   public static void wrapping() {
-    /*
+    /* source: https://www.baeldung.com/java-thread-safety
     // There are many ways to achieve thread-safety in Java. The most recommended ways is to use
     // Immutable classes/structures for your objects. Where that isn't possible, you have alternative methods:
     ThreadLocal           (Forces a object created to stay in the thread in which it was created.)
@@ -169,6 +169,21 @@ class ThreadSafety {
     // The ultimate thread-safe setup would be using Reactive Streams library like RXJava with Immutable Data Structures
     // that either you made or the ones in Google Guava.
      */
+    // Synchronized methods:
+//    public synchronized void incrementCounter() {
+//      counter += 1;
+//    }
+    // Synchronized operations:
+    List<String> list = new ArrayList<>();
+    synchronized (list) {
+      //operations on list
+       }
+    // Synchronized Collections:
+    Collection<Integer> syncCollection = Collections.synchronizedCollection(new ArrayList<>());
+    Thread thread1 = new Thread(() -> syncCollection.addAll(Arrays.asList(1, 2, 3, 4, 5, 6)));
+    Thread thread2 = new Thread(() -> syncCollection.addAll(Arrays.asList(7, 8, 9, 10, 11, 12)));
+    thread1.start();
+    thread2.start();
     // ThreadLocal: There are two ways to create a object with ThreadLocal:
     final ThreadLocal<ArrayList> al = new ThreadLocal<>();
     al.get().add("hello");
