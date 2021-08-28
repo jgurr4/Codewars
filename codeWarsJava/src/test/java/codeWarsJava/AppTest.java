@@ -7,6 +7,7 @@ import codeWarsJava.algorithms.SelectionSort;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.*;
 
@@ -182,6 +183,7 @@ public class AppTest {
 
   @Test
   public void playgroundTest() {
+    assertEquals(new ArrayList<String>(Arrays.asList("Benny")), Playground.compareEmployeeFiles());
     Playground myPlay = new Playground();         //How to use non-static methods.
     assertEquals(16, myPlay.exponent(2, 4));
     assertEquals(3, Playground.modulo(8, 5));  //How to use static methods.

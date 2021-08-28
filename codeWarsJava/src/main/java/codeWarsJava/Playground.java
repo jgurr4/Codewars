@@ -1,10 +1,14 @@
 package codeWarsJava;
 
+import netscape.javascript.JSObject;
+
 import javax.swing.text.DateFormatter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
+import java.io.*;
+import java.util.Scanner;
 
 
 public class Playground {
@@ -44,6 +48,76 @@ public class Playground {
     this.setNum1(4);
   }
 
+  //TODO: Problems with this method: 1: It only shows what names are not common, it doesn't tell you which file
+  // the name is in.
+  public static ArrayList<String> compareEmployeeFiles() {
+/*  Access files inside src/main/resources folder
+    InputStream instr = obj.getClass().getClassLoader().getResourceAsStream("employeeAddress.txt");
+    try {
+      InputStreamReader strrd = new InputStreamReader(instr);
+      BufferedReader rr = new BufferedReader(strrd);
+      String line;
+      while ((line = rr.readLine()) != null) {
+        System.out.println(line);
+      }
+*/
+    //Access files anywhere. Specifically content root $HOME/Codewars/codeWarsJava/
+    Playground obj = new Playground();
+    System.out.println("name.getClass.getName is: " + "name".getClass().getName());
+    final File empAddress = new File("employeeAddress.txt");
+    final File empNumber = new File("employeeNumber.txt");
+    ArrayList<String> uncommonNames = new ArrayList<>();
+/* Alternative method of checking if file exists instead of using try/catch blocks
+    if (!empAddress.exists() || !empNumber.exists()) {
+      return null;
+    }
+*/
+
+    try {
+      final FileReader frAddress = new FileReader("employeeAddress.txt");
+      final FileReader frNumber = new FileReader("employeeNumber.txt");
+      final BufferedReader br = new BufferedReader(frAddress);
+      System.out.println("employeeAddress.txt bufferedReader.readline() looks like: " + br.readLine());
+      System.out.println("employeeAddress.txt to string looks like: " + empAddress.toString());
+      final Scanner readAddress = new Scanner(empAddress);
+      final Scanner readNumber = new Scanner(empNumber);
+//      System.out.println("employeeAddress.txt has " + empAddress.list().length + " lines.");
+      ArrayList<String> names1 = makeLines(readAddress);
+      ArrayList<String> names2 = makeLines(readNumber);
+//      frAddress.close();
+//      frNumber.close();
+      int i = 0;
+      while (i < names1.size() && i < names2.size()) {
+        if (!names1.contains(names2.get(i)) || !names2.contains(names1.get(i))) {
+          uncommonNames.add(names1.get(i));
+        }
+        i++;
+      }
+      System.out.println("uncommon names: " + uncommonNames);
+      readAddress.close();
+      readNumber.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("Error: " + e.getMessage());
+      System.out.println("Stack Trace: " + Arrays.toString(e.getStackTrace()));
+      System.out.println("Cause: " + e.getCause());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return uncommonNames;
+  }
+
+  private static ArrayList<String> makeLines(Scanner readFile) {
+    String[] entries = new String[2];
+    ArrayList<String> names = new ArrayList<>();
+    while (readFile.hasNextLine()) {
+      entries = readFile.nextLine().split(","); // 2 entries
+      System.out.println(Arrays.toString(entries));
+      names.add(entries[0]);
+    }
+    return names;
+  }
+
+
   public int exponent(int a, int b) {
     final int pow = (int) Math.pow(a, b); // I cast as int because otherwise it returns double.
     System.out.println("exponent is: " + pow); // 16
@@ -76,9 +150,10 @@ public class Playground {
 //    }
     return result;
   }
+
   static class Something {    //Nested Class.
     public static int multiply(int a, int b) {
-      final int result = a*b;
+      final int result = a * b;
       System.out.println("Multiply result = " + result);
       return result;
     }
@@ -145,7 +220,7 @@ class DataStructures {
 }
 
 class Algorithms {
-  public static void onDataStructures(){
+  public static void onDataStructures() {
     // Trees for sorting and binary search trees (divide and conquer)
     // merge sort and quick sort etc...
   }
@@ -177,7 +252,7 @@ class ThreadSafety {
     List<String> list = new ArrayList<>();
     synchronized (list) {
       //operations on list
-       }
+    }
     // Synchronized Collections:
     Collection<Integer> syncCollection = Collections.synchronizedCollection(new ArrayList<>());
     Thread thread1 = new Thread(() -> syncCollection.addAll(Arrays.asList(1, 2, 3, 4, 5, 6)));
