@@ -183,6 +183,7 @@ public class AppTest {
 
   @Test
   public void playgroundTest() {
+    Playground.fileOperations();
     assertEquals(new ArrayList<String>(Arrays.asList("Benny")), Playground.compareEmployeeFiles());
     Playground myPlay = new Playground();         //How to use non-static methods.
     assertEquals(16, myPlay.exponent(2, 4));

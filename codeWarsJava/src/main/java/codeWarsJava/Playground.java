@@ -117,6 +117,45 @@ public class Playground {
     return names;
   }
 
+  public static void fileOperations() {
+    File dir = new File("my_csv_files");
+    File csv = new File("my_csv_files/test.csv");
+    try {
+      dir.mkdir();        // Create directory
+      csv.createNewFile();  // Create file
+      System.out.println("Absolute Path: " + csv.getAbsolutePath());
+      System.out.println("Writable: " + csv.canWrite());  // Default is true
+      System.out.println("Readable: " + csv.canRead());   // Default is true
+      System.out.println("Executable: " + csv.canExecute());  // Default is false
+      File csv2 = new File("my_csv_files/names.csv");
+      csv.renameTo(csv2); // rename/move file.
+      System.out.println("Files inside my_csv_files dir: " + Arrays.toString(dir.listFiles())); //List all files in directory.
+//      csv.delete();   // Delete file
+//      dir.delete();   // Delete Directory
+//      csv.setExecutable(true, true);  // Make file executable by owner only.
+      System.out.println("test.csv file exists: " + csv.exists());
+      System.out.println("names.csv file exists: " + csv2.exists());
+      System.out.println("my_csv_files dir exists: " + dir.exists());
+      String str = "Hello\nThis is my second line.";
+      BufferedWriter writer = new BufferedWriter(new FileWriter(csv2, true));
+      writer.write(str);  //Write overwrites existing file. You can specify where to start overwriting file if you don't want to overwrite entire thing.
+      writer.newLine();
+      writer.append("Dude that's good.");  //Append adds to end of existing file.
+      writer.flush(); //Saves the changes so filereaders can work to read contents.
+      FileReader readNames = new FileReader(csv2);
+      BufferedReader br = new BufferedReader(readNames);
+//      System.out.println(readNames.read());  // Reads first character and returns it as int value.
+      String output = "";
+      while ((output = br.readLine()) != null) {
+        System.out.println(output);
+      }
+      writer.close();
+    } catch (IOException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+    // You can go beyond this to more effectively modify existing files, rather than just overwriting or creating new ones.
+    // Just use RandomAccessFile. see: https://www.baeldung.com/java-write-to-file
+  }
 
   public int exponent(int a, int b) {
     final int pow = (int) Math.pow(a, b); // I cast as int because otherwise it returns double.
