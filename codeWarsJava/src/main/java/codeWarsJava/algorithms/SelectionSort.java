@@ -7,10 +7,14 @@ with the first value in the unsorted values again, and now that becomes untoucha
 You can imagine them like two separate arrays. The first original array is slowly eaten by the new sorted array.
  */ // This works, next step is to make it work for strings or chars through ascii values I think.
 // Also figure out what is utility of stable sorting algorithms vs. non-stable. https://www.geeksforgeeks.org/stable-selection-sort/
+// To make Arrays work with any object so you don't have duplicate code for each one, just use generic arrays.
+// ArrayLists are much easier to accept any object for sorting and return any object, because it already works with any object.
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
-public class SelectionSort {
+public class SelectionSort implements Comparator {
   public static int[] sort(int[] arr) {
     if (arr.length == 0) {
       System.out.println(Arrays.toString(arr));
@@ -55,6 +59,10 @@ public class SelectionSort {
     return arr;
   }
 
+  @Override
+  public int compare(Object o1, Object o2) {
+    return 0;
+  }
 }
 
 // To do this, make a separate method inside if (arr[i] < min) called compare Strings, which will compare the first letters until it finds a
@@ -62,7 +70,11 @@ public class SelectionSort {
 // so it skips those and only compares the first different letters, which is 'h' and 's'. So then it returns the smaller one, which in this case is 'h'
 // so it returns 'john' first.
 /*
-  public static String[] sort(String[] arr) {
+  public static Object[] sort(Object[] arr) {
+    ArrayList<Integer> test = new ArrayList<>();
+    test.add(5);
+    test.add(1);
+    test.sort(new SelectionSort()); //How to make a comparable for .sort() method. implement in class itself so it is a comparable. Or make a separate comparable class that implements Comparator interface
     if (arr.length == 0) {
       System.out.println(Arrays.toString(arr));
       return arr;

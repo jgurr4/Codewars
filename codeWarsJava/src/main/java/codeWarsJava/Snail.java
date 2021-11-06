@@ -1,8 +1,182 @@
 package codeWarsJava;
 
 import java.util.Arrays;
-import java.util.function.IntPredicate;
 
+// Right now this fails to pass all the kata tests.
+public class Snail {
+  public static int[] snail(int[][] arr) {
+    int rowNum = arr.length;
+    int colNum = arr[0].length;
+    int[] currentPosition = {0, 0};
+    int[] nextPosition = {0, 0};
+    int[][] visitedArr = new int[rowNum * colNum][2];
+    int[] results = new int[rowNum * colNum];
+    boolean visited = false;
+    Direction currentDirection = Direction.right;
+
+    for (int i = 0; i < rowNum * colNum; i++) {
+      if (i > 0) {
+        if (Arrays.equals(visitedArr[i - 1], currentPosition)) {
+          i--;
+        }
+      }
+      visitedArr[i] = new int[]{currentPosition[0], currentPosition[1]};
+      visited = false;
+      nextPosition = new int[]{currentPosition[0], currentPosition[1] + 1};
+      if (currentDirection == Direction.right) {
+        if (nextPosition[1] < colNum) {
+          for (int j = 0; j < visitedArr.length; j++) {
+            if (nextPosition[0] == visitedArr[j][0] && nextPosition[1] == visitedArr[j][1]) {
+              visited = true;
+              break;
+            }
+          }
+        }
+        if (visited == false && nextPosition[1] < colNum) {
+          currentPosition[0] = nextPosition[0];
+          currentPosition[1] = nextPosition[1];
+          continue;
+        } else {
+          currentDirection = Direction.down;
+        }
+      }
+      visited = false;
+      nextPosition = new int[]{currentPosition[0] + 1, currentPosition[1]};
+      if (currentDirection == Direction.down) {
+        if (nextPosition[0] < rowNum) {
+          for (int j = 0; j < visitedArr.length; j++) {
+            if (nextPosition[0] == visitedArr[j][0] && nextPosition[1] == visitedArr[j][1]) {
+              visited = true;
+              break;
+            }
+          }
+        }
+        if (visited == false && nextPosition[0] < rowNum) {
+          currentPosition[0] = nextPosition[0];
+          currentPosition[1] = nextPosition[1];
+          continue;
+        } else {
+          currentDirection = Direction.left;
+        }
+      }
+      visited = false;
+      nextPosition = new int[]{currentPosition[0], currentPosition[1] - 1};
+      if (currentDirection == Direction.left) {
+        if (nextPosition[1] >= 0) {
+          for (int j = 0; j < visitedArr.length; j++) {
+            if (nextPosition[0] == visitedArr[j][0] && nextPosition[1] == visitedArr[j][1]) {
+              visited = true;
+              break;
+            }
+          }
+        }
+        if (visited == false && nextPosition[1] >= 0) {
+          currentPosition[0] = nextPosition[0];
+          currentPosition[1] = nextPosition[1];
+          continue;
+        } else {
+          currentDirection = Direction.up;
+        }
+      }
+      visited = false;
+      nextPosition = new int[]{currentPosition[0] - 1, currentPosition[1]};
+      if (currentDirection == Direction.up) {
+        if (nextPosition[0] >= 0) {
+          for (int j = 0; j < visitedArr.length; j++) {
+            if (nextPosition[0] == visitedArr[j][0] && nextPosition[1] == visitedArr[j][1]) {
+              visited = true;
+              break;
+            }
+          }
+        }
+        if (visited == false && currentDirection == Direction.up) {
+          currentPosition[0] = nextPosition[0];
+          currentPosition[1] = nextPosition[1];
+          continue;
+        } else {
+          currentDirection = Direction.right;
+          continue;
+        }
+      }
+      break;
+    }
+    visitedArr[visitedArr.length - 1] = new int[]{currentPosition[0], currentPosition[1]};
+    for (int i = 0; i < visitedArr.length; i++) {
+      results[i] = arr[visitedArr[i][0]][visitedArr[i][1]];
+    }
+    System.out.println(Arrays.toString(results) + "\n");
+    return results;
+  }
+
+  public enum Direction {
+    right,
+    down,
+    left,
+    up
+  }
+
+}
+
+/*
+public class Snail {
+
+    public static int[] snail(int[][] arr) {
+        int rowNum = arr.length;
+        int colNum = arr[0].length;
+//        int[] nextPosition = makeCoordinate(0, 0);
+        int[] currentPosition = {0, 0};
+        int[] nextPosition = {0, 0};
+        int[][] visited = new int[rowNum*colNum][2];
+        visited[0][0] = nextPosition[0];
+        visited[0][1] = nextPosition[1];
+        return null;
+    }
+
+    public static int[] makeCoordinate(int x, int y) {
+        int[] coordinate = new int[2];
+        coordinate[0] = x;
+        coordinate[1] = y;
+        return coordinate;
+    }
+
+}
+*/
+
+/*
+public class Snail {
+
+    public static int[] snail(int[][] arr) {
+        int rowNum = arr.length;
+        int colNum = arr[0].length;
+        Coordinate pos = new Coordinate(0, 1);
+        Coordinate[] visited = new Coordinate[rowNum * colNum];
+        visited[0] = new Coordinate(0, 1);
+        int[] posCoordinates = visited[0].getCoordinates();
+        if (visited[i].getCoordinates() == nextPos) {
+        }
+        return null;
+    }
+
+    public static class Coordinate {
+        private int x;
+        private int y;
+
+        public Coordinate(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int[] getCoordinates() {
+            int[] arr = new int[2];
+            arr[0] = this.x;
+            arr[1] = this.y;
+            return arr;
+        }
+    }
+}
+*/
+
+/* This code works and passes the kata.
 public class Snail {
   static int pos = 0;
   static int index = 1;
@@ -84,68 +258,6 @@ public class Snail {
       return true;
     }
     return false;
-  }
-}
-
-/* Remove this if I succeed above.
-    while (!goalReached) {
-      for (int i = 0; i < arr.length; i++) {
-        for (int j = 1; j <= rowNum; j++) {
-          while (pos < colNum * j) {
-            if (!beenVisited(pos + 1) && validSpace(pos + 1)) {
-              pos++;
-              solution[i] = arr[pos];
-            } else if (!beenVisited(pos + 1 * j) && validSpace(pos + 1 * j)) {
-              pos += 1 * j;
-              solution[i] = arr[pos];
-            } else if (!beenVisited(pos - 1) && validSpace(pos - 1)) {
-              pos--;
-              solution[i] = arr[pos];
-            } else if (!beenVisited(pos - 1 * j) && validSpace(pos - 1 * j)) {
-              pos -= 1 * j;
-              solution[i] = arr[pos];
-            } else {
-              goalReached = true;
-            }
-          }
-        }
-      }
-    }
-    return solution;
-  }
-
-  private static boolean validSpace(int i) {
-    return false;
-  }
-
-  private static boolean beenVisited(int i) {
-    return false;
-  }
-}
-*/
-/*  This is a method I was trying to use for working with a two dimensional array.
-public class Snail {
-  public static int[] snail(int[][] array) {
-//    final int[] singleArr = Arrays.stream(array).flatMapToInt(x -> Arrays.stream(x)).toArray();
-    final int colNum = array[0].length;
-    final int rowNum = array.length;
-    final int totalLength = colNum * rowNum;
-    int[] solution = {totalLength};
-    int[] pos = {0, 0}; // {x, y} where x = colNum, and y = rowNum
-    solution[0] = array[pos[0]][pos[1]];
-    for (int i = 0; i < colNum; i++) {
-      for (int j = 0; j < rowNum; j++) {
-        boolean[][] visitedArr = new boolean[colNum][rowNum];
-        boolean visited = visitedArr[i][j];
-        if (pos[0] < colNum && visited == false) { // if there is room to move right, it moves position right.
-          pos[0] += 1;
-        }
-        if (j != 0) {
-          solution[i] = array[pos[0]][pos[1]];
-        }
-      }
-    }
-    return null;
   }
 }
 */

@@ -182,10 +182,17 @@ public class AppTest {
   }
 
   @Test
+  public void countDuplicatesTest() {
+    Playground.printNumberOfDuplicates(new int[]{1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 6, 7, 7, 8, 9, 9, 9, 9});
+    Playground.printNumberOfDuplicates(new int[]{1, 1, 1, 1, 2, 2, 4});
+  }
+
+  @Test
   public void playgroundTest() {
+    Playground myPlay = new Playground();         //How to use non-static methods.
+    myPlay.rxJava3Practice();
     Playground.fileOperations();
     assertEquals(new ArrayList<String>(Arrays.asList("Benny")), Playground.compareEmployeeFiles());
-    Playground myPlay = new Playground();         //How to use non-static methods.
     assertEquals(16, myPlay.exponent(2, 4));
     assertEquals(3, Playground.modulo(8, 5));  //How to use static methods.
     assertEquals(5, MorePlay.modulo(11, 6));
@@ -209,7 +216,7 @@ public class AppTest {
             {1, 2, 3, 4}};
     int[] r2 = {1, 2, 3, 9, 4, 1, 4, 3, 2, 1, 7, 4, 5, 6, 9, 8};
 
-    test(array, r);
+//    test(array, r);
     test(arr2, r2);
   }
 
@@ -241,6 +248,24 @@ public class AppTest {
   public void removeThreesTest() {
     assertEquals("[1, 2, 4, 5, 6]", RemoveThrees.removeThrees(new int[]{1, 2, 3, 4, 5, 6}));
     assertEquals("[6, 2, 80, 23, 14, 27, 18, 28, 45, 10, 9, 17]", RemoveThrees.removeThrees(new int[]{6, 3, 2, 80, 3, 23, 3, 14, 27, 3, 18, 28, 45, 3, 10, 9, 17}));
+  }
+
+  @Test
+  public void spiralizorTest() {
+    assertArrayEquals(new int[][] {
+        {1, 1, 1, 1, 1},
+        {0, 0, 0, 0, 1},
+        {1, 1, 1, 0, 1},
+        {1, 0, 0, 0, 1},
+        {1, 1, 1, 1, 1}
+    }, Spiralizor.spiralize(5));
+  }
+
+
+  @Test
+  public void getZeros() {
+    assertEquals(4, Factorial.getZeros(23));
+    assertEquals(0, Factorial.getZeros(4));
   }
 
 }
