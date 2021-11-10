@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.*;
 
 import static java.util.stream.Collectors.joining;
@@ -252,6 +253,8 @@ public class AppTest {
 
   @Test
   public void spiralizorTest() {
+    System.out.println(Arrays.deepToString(Spiralizor.spiralize(5)));
+/*
     assertArrayEquals(new int[][] {
         {1, 1, 1, 1, 1},
         {0, 0, 0, 0, 1},
@@ -259,6 +262,7 @@ public class AppTest {
         {1, 0, 0, 0, 1},
         {1, 1, 1, 1, 1}
     }, Spiralizor.spiralize(5));
+*/
   }
 
 
@@ -266,6 +270,26 @@ public class AppTest {
   public void getZeros() {
     assertEquals(4, Factorial.getZeros(23));
     assertEquals(0, Factorial.getZeros(4));
+  }
+
+  @Test
+  public void StreamTest() {
+/*
+    final ArrayList<Integer> integers = new ArrayList<>();
+    integers.addAll(List.of(1, 2, 3, 4, 4, 3, 2, 1));
+    assertEquals(12, Streams.streams1(integers));
+*/
+    Streams.streams2();
+  }
+
+  @Test
+  public void findTest() {
+    assertEquals(5, FindOdd.findIt(new int[]{20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5}));
+    assertEquals(-1, FindOdd.findIt(new int[]{1,1,2,-2,5,2,4,4,-1,-2,5}));
+    assertEquals(5, FindOdd.findIt(new int[]{20,1,1,2,2,3,3,5,5,4,20,4,5}));
+    assertEquals(10, FindOdd.findIt(new int[]{10}));
+    assertEquals(10, FindOdd.findIt(new int[]{1,1,1,1,1,1,10,1,1,1,1}));
+    assertEquals(1, FindOdd.findIt(new int[]{5,4,3,2,1,5,4,3,2,10,10}));
   }
 
 }
