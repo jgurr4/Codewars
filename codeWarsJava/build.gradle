@@ -29,6 +29,7 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.1'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'

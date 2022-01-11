@@ -99,6 +99,32 @@ public class Playground {
         .subscribe(System.out::println);
   }
 
+  public static int[] algorithmExample(int[][] arr) {
+    // This is a much more efficient method of flattening a nested primitive array in Java.
+    return Arrays.stream(arr)
+        .flatMapToInt(e -> Arrays.stream(e))  // converts to IntStream and flattens nested array.
+        .toArray();   // converts to primitive int[].
+
+/* // This is the original method I came up with. It works, but it's much less efficient than the above solution.
+    System.out.println(Arrays.deepToString(arr));
+    //Turn a nested int array into a normal array.
+    final List<Integer> collect = Arrays.stream(arr)
+        .peek(System.out::println)
+        .flatMapToInt(e -> Arrays.stream(e))  // converts to IntStream and flattens nested array.
+        .peek(System.out::println)
+        .boxed()                  //converts to a Stream<Integer>
+        .collect(toList());       // collects as a List<Integer>
+
+    // Converts List<Integer> to int[]
+    final int[] shallowArr = new int[collect.size()];
+    for (int i = 0; i < collect.size(); i++) {
+      shallowArr[i] = collect.get(i);
+    }
+    System.out.println(Arrays.toString(shallowArr));
+    return shallowArr;
+*/
+  }
+
   public static void printNumberOfDuplicates(int[] arr) {
     int num = arr[0];
     int count = 0;

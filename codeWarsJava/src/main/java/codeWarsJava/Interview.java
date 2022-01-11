@@ -10,13 +10,11 @@ public class Interview {
     final int[][] intArr = {{1, 2, 3}, {1, 2, 3}};
     final int[] newArr;
     final ArrayList<Integer> arrList = new ArrayList<>();
-    for (int i = 0; i < arrays[0].length; i++) {
-      arrList.add(arrays[0][i]);
+    for (int i = 0; i < arrays.length; i++) {
+      for (int j = 0; j < arrays[0].length; j++) {
+        arrList.add(arrays[i][j]);
+      }
     }
-    for (int i = 0; i < arrays[1].length; i++) {
-      arrList.add(arrays[1][i]);
-    }
-
     return (Integer[]) arrList.toArray();
   }
 

@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
+// Check out the answers for this kata to see a awesome use of XOR ^ operator.
+  // https://www.codewars.com/kata/54da5a58ea159efa38000836/solutions/java
 public class FindOdd {
 
   //Return the number that appears an odd number of times.

@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.*;
 
 import static java.util.stream.Collectors.joining;
@@ -290,6 +289,31 @@ public class AppTest {
     assertEquals(10, FindOdd.findIt(new int[]{10}));
     assertEquals(10, FindOdd.findIt(new int[]{1,1,1,1,1,1,10,1,1,1,1}));
     assertEquals(1, FindOdd.findIt(new int[]{5,4,3,2,1,5,4,3,2,10,10}));
+  }
+
+  @Test
+  public void algorithmExampleTest() {
+    assertEquals(Arrays.toString(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}), Arrays.toString(Playground.algorithmExample(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}})));
+  }
+
+  @Test
+  public void printParagraphTest() {
+    Utilities.printParagraph(new String[][]{
+        {"Once upon aaa time", "there was a young boe."},
+        {" He fought liike a lion,", " and roard li*e one too."},
+        {" Then, upon a star,", " he wished for the str3ngth he"},
+        {" had could translate to", " a win for his families business."}
+    });
+  }
+
+  @Test
+  public void saveJsonObjectTest() {
+    Utilities.serializeAndSaveJson();
+  }
+
+  @Test
+  public void saveJsonToFileTest() {
+    Utilities.saveJsonToFile();
   }
 
 }
