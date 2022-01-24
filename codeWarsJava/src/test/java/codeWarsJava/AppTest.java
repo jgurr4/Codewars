@@ -316,6 +316,14 @@ public class AppTest {
     Utilities.saveJsonToFile();
   }
 
+  @Test
+  public void threadCountingTest() {
+    final Counter counter = new Counter();
+    ThreadedCounting.countInThreads(counter);
+    final int[] values = counter.values;
+    assertArrayEquals(IntStream.rangeClosed(1, 100).toArray(), values);
+  }
+
 }
 
 
