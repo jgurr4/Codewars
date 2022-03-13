@@ -324,6 +324,11 @@ public class AppTest {
     assertArrayEquals(IntStream.rangeClosed(1, 100).toArray(), values);
   }
 
+  @Test
+  public void addBits() {
+    BitCounting.addBits();
+  }
+
 }
 
 

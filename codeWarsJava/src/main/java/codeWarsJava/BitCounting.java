@@ -33,4 +33,10 @@ public class BitCounting {
 		return text;
 		
 	}
+
+	public static void addBits() {
+		byte currentVal = (byte) 0b100;
+		System.out.println(Integer.toBinaryString(currentVal));
+		System.out.println(Integer.toBinaryString(currentVal + 0b010));
+	}
 }
